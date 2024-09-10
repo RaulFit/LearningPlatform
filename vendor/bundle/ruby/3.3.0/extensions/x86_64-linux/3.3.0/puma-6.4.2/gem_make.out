@@ -1,0 +1,33 @@
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/puma-6.4.2/ext/puma_http11
+/home/fitraul/.rbenv/versions/3.3.4/bin/ruby extconf.rb
+checking for BIO_read() in -llibcrypto... no
+checking for BIO_read() in -lcrypto... yes
+checking for SSL_CTX_new() in -lssl... yes
+checking for openssl/bio.h... yes
+checking for DTLS_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_session_cache_mode(NULL, 0) in openssl/ssl.h... yes
+checking for TLS_server_method() in openssl/ssl.h... yes
+checking for SSL_CTX_set_min_proto_version(NULL, 0) in openssl/ssl.h... yes
+checking for X509_STORE_up_ref()... yes
+checking for SSL_CTX_set_ecdh_auto(NULL, 0) in openssl/ssl.h... yes
+checking for SSL_CTX_set_dh_auto(NULL, 0) in openssl/ssl.h... yes
+checking for SSL_get1_peer_certificate() in openssl/ssl.h... no
+checking for Random.bytes... yes
+creating Makefile
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/puma-6.4.2/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-vr1u0z sitelibdir\=./.gem.20240828-15848-vr1u0z clean
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/puma-6.4.2/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-vr1u0z sitelibdir\=./.gem.20240828-15848-vr1u0z
+compiling http11_parser.c
+compiling mini_ssl.c
+compiling puma_http11.c
+linking shared-object puma/puma_http11.so
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/puma-6.4.2/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-vr1u0z sitelibdir\=./.gem.20240828-15848-vr1u0z install
+/usr/bin/install -c -m 0755 puma_http11.so ./.gem.20240828-15848-vr1u0z/puma
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/puma-6.4.2/ext/puma_http11
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-vr1u0z sitelibdir\=./.gem.20240828-15848-vr1u0z clean

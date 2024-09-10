@@ -1,0 +1,18 @@
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.1/ext/stringio
+/home/fitraul/.rbenv/versions/3.3.4/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-solx4r sitelibdir\=./.gem.20240828-15848-solx4r clean
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-solx4r sitelibdir\=./.gem.20240828-15848-solx4r
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-solx4r sitelibdir\=./.gem.20240828-15848-solx4r install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20240828-15848-solx4r
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-solx4r sitelibdir\=./.gem.20240828-15848-solx4r clean

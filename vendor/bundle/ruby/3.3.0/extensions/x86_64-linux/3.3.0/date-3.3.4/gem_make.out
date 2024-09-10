@@ -1,0 +1,24 @@
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/date-3.3.4/ext/date
+/home/fitraul/.rbenv/versions/3.3.4/bin/ruby extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... yes
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-p8jpcw sitelibdir\=./.gem.20240828-15848-p8jpcw clean
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-p8jpcw sitelibdir\=./.gem.20240828-15848-p8jpcw
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-p8jpcw sitelibdir\=./.gem.20240828-15848-p8jpcw install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20240828-15848-p8jpcw
+
+current directory: /home/fitraul/railsprojects/learning-platform/vendor/bundle/ruby/3.3.0/gems/date-3.3.4/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20240828-15848-p8jpcw sitelibdir\=./.gem.20240828-15848-p8jpcw clean
