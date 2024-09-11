@@ -58,6 +58,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
 end
 
@@ -81,4 +82,4 @@ end
 
 gem 'factory_bot', '~> 6.4'
 
-gem "tailwindcss-rails", "~> 2.7"
+gem 'tailwindcss-rails', '~> 2.7'

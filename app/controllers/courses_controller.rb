@@ -5,18 +5,34 @@ class CoursesController < ApplicationController
 
   def show; end
 
+  def mycourses
+    @courses = Course.all
+  end
+
   def create
-    @article.create
+    if @course.save
+      flash[:notice] = 'Course created successfully'
+      redirect_to user_path(current_user)
+    else
+      flash[:alert] = 'Course not created'
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit; end
 
   def update
-    @article.update(course_params)
+    if @course.update(course_params)
+      flash[:notice] = 'Course updated successfully'
+      redirect_to courses_mycourses_path(current_user)
+    else
+      flash[:alert] = 'Course not updated'
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    @article.destroy
+    @course.destroy
   end
 
   protected

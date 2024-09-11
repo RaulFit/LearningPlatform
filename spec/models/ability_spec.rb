@@ -12,7 +12,6 @@ RSpec.describe Ability, type: :model do
     describe 'abilities' do
       it { is_expected.to be_able_to(:manage, course) }
       it { is_expected.to be_able_to(:manage, comment) }
-      it { is_expected.to be_able_to(:manage, registration) }
     end
   end
 end

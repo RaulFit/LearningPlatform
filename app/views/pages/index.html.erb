@@ -1,2 +1,7 @@
 <%= render "navbar" %>
-<%= render "hero" %>
+
+<% if current_user %>
+    <%= render 'courses/index'%>
+<% else %>
+    <%= render "hero" %>
+<% end %>

@@ -1,10 +1,11 @@
 <section class="px-8 text-gray-700 bg-indigo-400 w-screen mx-auto">
     <div class="container flex flex-col items-center justify-between py-5 md:flex-row mx-auto">
         <div class="relative flex flex-col md:flex-row mx-auto">
-            <a href="#_" class="flex items-center mb-5 font-medium text-gray-900 lg:w-auto lg:items-center lg:justify-center md:mb-0">
+            
+            <nav class="flex-1 flex-row items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 ">
+                <a href="#_" class="inline-flex mr-5 items-center mb-5 font-medium text-gray-900 lg:w-auto lg:items-center lg:justify-center md:mb-0">
                 <span class="mx-auto text-xl font-black leading-none text-gray-900 select-none">Learning Platform</span>
-            </a>
-            <nav class="flex-1 flex-row items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200">
+                </a>
                 <%= link_to 'Home', root_path, class:"mr-5 font-medium leading-6 text-black hover:text-gray-900" %>
                 <%= link_to 'Features', '/pages/features', class:"mr-5 font-medium leading-6 text-black hover:text-gray-900" %>
                 <% if current_user %>
@@ -12,8 +13,7 @@
                     <div class="group py-1">
                         <button type="button"
                             class="inline-flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600
-                             hover:bg-indigo-800 focus:outline-none focus:bg-gray-700"><%= current_user.username %>
-
+                             hover:bg-indigo-800 focus:outline-none focus:bg-gray-700 rounded-lg"><%= current_user.username %>
                             <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
                             </svg>
@@ -21,6 +21,9 @@
 
                         <div
                             class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
+                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                <div class="font-medium truncate"><%= current_user.email %></div>
+                            </div>
                             <div class="py-1">
                             <%= link_to "Profile", user_path(current_user), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                             <%= link_to 'Log out', user_session_path(current_user), data: { turbo_method: :delete }, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
