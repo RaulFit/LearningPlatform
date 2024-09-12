@@ -33,6 +33,8 @@ class CoursesController < ApplicationController
 
   def destroy
     @course.destroy
+    flash[:notice] = 'Course deleted successfully'
+    redirect_to courses_mycourses_path(current_user)
   end
 
   protected
