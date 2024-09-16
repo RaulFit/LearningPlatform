@@ -5,7 +5,7 @@ RSpec.describe 'Courses', type: :request do
   let(:course) { create(:course, author: user) }
 
   before do
-    ApplicationController.any_instance.stub(:current_user).and_return(@user = user)
+    post user_sessions_path, params: { user: { username: user.username, password: user.password } }
   end
 
   context 'GET /index' do
@@ -38,8 +38,8 @@ RSpec.describe 'Courses', type: :request do
 
   context 'POST /Course' do
     it 'should create a course with valid attributes' do
-      post '/courses', params: { course: attributes_for(:course) }
-      expect(response).to redirect_to user_path(user)
+      post '/courses', params: { course: attributes_for(:course, author_id: user.id) }
+      expect(response).to redirect_to courses_mycourses_path(user)
       expect(flash[:notice]).to eq 'Course created successfully'
     end
 

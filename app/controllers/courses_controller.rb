@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   def create
     if @course.save
       flash[:notice] = 'Course created successfully'
-      redirect_to user_path(current_user)
+      redirect_to courses_mycourses_path(current_user)
     else
       flash[:alert] = 'Course not created'
       render :new, status: :unprocessable_entity

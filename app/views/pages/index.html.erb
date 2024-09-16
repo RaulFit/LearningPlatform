@@ -1,7 +1,7 @@
 <%= render "navbar" %>
 
 <% if current_user %>
-    <%= render 'courses/index'%>
+    <%= render 'courses/index', courses: Course.all %>
 <% else %>
     <%= render "hero" %>
 <% end %>
