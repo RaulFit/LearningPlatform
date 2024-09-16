@@ -5,7 +5,7 @@ RSpec.describe 'Courses', type: :request do
   let(:course) { create(:course, author: user) }
 
   before do
-    post user_sessions_path, params: { user: { username: user.username, password: user.password } }
+    login(user)
   end
 
   context 'GET /index' do
