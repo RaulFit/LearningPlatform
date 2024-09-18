@@ -6,12 +6,14 @@ RSpec.describe Ability, type: :model do
   let(:user) { create(:user) }
   let(:course) { create(:course, author: user) }
   let(:comment) { create(:comment, user:, course:) }
+  let(:lesson) { create(:lesson, course:) }
   let(:registration) { create(:registration, user:, course:) }
 
   describe 'User' do
     describe 'abilities' do
       it { is_expected.to be_able_to(:manage, course) }
       it { is_expected.to be_able_to(:manage, comment) }
+      it { is_expected.to be_able_to(:manage, lesson) }
     end
   end
 end

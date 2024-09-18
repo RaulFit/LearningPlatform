@@ -6,7 +6,7 @@ class Ability
 
     can :manage, Course, author: user
     can :manage, Lesson, course: { author_id: user.id }
-
+    can :read, Course
     can :manage, Lesson
     can :manage, Comment, user:
   end

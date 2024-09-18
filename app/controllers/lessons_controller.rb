@@ -21,11 +21,19 @@ class LessonsController < ApplicationController
   def edit; end
 
   def update
-    @lesson.update(lesson_params)
+    if @lesson.update(lesson_params)
+      flash[:notice] = 'Lesson updated successfully'
+      redirect_to courses_mycourses_path(current_user)
+    else
+      flash[:alert] = 'Lesson not updated'
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @lesson.destroy
+    flash[:notice] = 'Lesson deleted successfully'
+    redirect_to courses_mycourses_path(current_user)
   end
 
   protected
