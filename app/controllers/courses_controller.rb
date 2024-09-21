@@ -6,7 +6,11 @@ class CoursesController < ApplicationController
   def show; end
 
   def mycourses
-    @courses = Course.all
+    @courses = Course.where(author_id: current_user.id)
+  end
+
+  def explore
+    @courses = Course.where.not(author_id: current_user.id)
   end
 
   def create

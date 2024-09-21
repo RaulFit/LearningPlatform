@@ -15,14 +15,19 @@ RSpec.describe 'Courses', type: :request do
         expect(response).to render_template :index
       end
 
+      it 'is not a new course' do
+        get courses_path
+        expect(response.body).to match(have_tag_with_content('title', 'LearningPlatform'))
+      end
+
       it 'should contain the course title' do
-        @course = course
+        course
         get courses_path
         expect(response.body).to include(course.title)
       end
 
       it 'should contain the course description' do
-        @course = course
+        course
         get courses_path
         expect(response.body).to include(course.description)
       end
@@ -35,13 +40,13 @@ RSpec.describe 'Courses', type: :request do
       end
 
       it 'should contain the course title' do
-        @course = course
+        course
         get courses_path
         expect(response.body).to include(course.title)
       end
 
       it 'should contain the course description' do
-        @course = course
+        course
         get courses_path
         expect(response.body).to include(course.description)
       end
@@ -101,7 +106,7 @@ RSpec.describe 'Courses', type: :request do
 
     context 'Delete /Course' do
       it 'should destroy a course' do
-        course = Course.create! attributes_for(:course, author_id: user.id)
+        course
         expect { delete "/courses/#{course.id}" }.to change(Course, :count).by(-1)
       end
 

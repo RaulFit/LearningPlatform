@@ -74,8 +74,8 @@ RSpec.describe 'Lessons', type: :request do
 
     context 'Delete /Course/Lesson' do
       it 'should destroy a lesson' do
-        course = Course.create! attributes_for(:course, author_id: user.id)
-        lesson = Lesson.create! attributes_for(:lesson, course_id: course.id)
+        course
+        lesson
         expect { delete "/courses/#{course.id}/lessons/#{lesson.id}" }.to change(Lesson, :count).by(-1)
       end
 

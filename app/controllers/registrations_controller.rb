@@ -1,8 +1,14 @@
 class RegistrationsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :course
+  load_and_authorize_resource :registration, through: :course
+
+  def new; end
 
   def create
-    @registration.create
+    return unless @registration.save
+
+    flash[:notice] = "Successfully registered to #{@course.title}"
+    redirect_to courses_mycourses_path(current_user)
   end
 
   def destroy
