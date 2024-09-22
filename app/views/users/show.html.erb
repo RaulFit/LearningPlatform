@@ -9,7 +9,7 @@
                         <h1 class="text-xl font-bold"><%= current_user.username %></h1>
                         <p class="text-gray-700">Software Developer</p>
                         <div class="mt-6 flex flex-wrap gap-4 justify-center">
-                            <%= link_to "My courses", courses_mycourses_path, class:"bg-indigo-600 hover:bg-indigo-800 text-white py-2 px-4 rounded" %>
+                            <%= link_to "My courses", user_courses_mycourses_path, class:"bg-indigo-600 hover:bg-indigo-800 text-white py-2 px-4 rounded" %>
                             <%= link_to "Add course", new_course_path, class:"bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded" %>
                         </div>
                     </div>

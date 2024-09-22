@@ -3,14 +3,8 @@ class CoursesController < ApplicationController
 
   def index; end
 
-  def show; end
-
-  def mycourses
-    @courses = Course.where(author_id: current_user.id)
-  end
-
-  def explore
-    @courses = Course.where.not(author_id: current_user.id)
+  def show
+    @current = 0
   end
 
   def create

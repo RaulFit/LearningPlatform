@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'pages/features'
   get 'pages/hero'
-  get 'courses/mycourses'
-  get 'courses/explore'
+  get 'user_courses/mycourses'
+  get 'user_courses/explore'
   resources :user_sessions, only: %i[new create destroy]
   resources :users, only: %i[show index new create]
   resources :courses do
