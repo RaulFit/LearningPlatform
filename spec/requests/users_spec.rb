@@ -12,13 +12,13 @@ RSpec.describe 'Users', type: :request do
 
   context 'POST /User' do
     it 'should create a user with valid attributes' do
-      post '/users', params: { user: attributes_for(:user) }
+      post users_path, params: { user: attributes_for(:user) }
       expect(response).to redirect_to users_path
       expect(flash[:notice]).to eq 'User created successfully'
     end
 
     it 'should not create a user with invalid attributes' do
-      post '/users', params: { user: attributes_for(:user, username: nil) }
+      post users_path, params: { user: attributes_for(:user, username: nil) }
       expect(response).to render_template :new
       expect(flash[:alert]).to eq 'User not created'
     end

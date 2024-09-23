@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
   </head>
 
   <body>
@@ -19,5 +20,12 @@
   <% end %>
 
   <%= yield %>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script>
+      hljs.configure({"cssSelector": ".trix-content pre"});
+      hljs.highlightAll();
+  </script>
   </body>
 </html>

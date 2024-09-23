@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
     return unless @registration.save
 
     flash[:notice] = "Successfully registered to #{@course.title}"
-    redirect_to courses_mycourses_path(current_user)
+    redirect_to user_courses_mycourses_path(current_user)
   end
 
   def destroy

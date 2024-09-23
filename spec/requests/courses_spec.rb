@@ -69,13 +69,13 @@ RSpec.describe 'Courses', type: :request do
     context 'POST /Course' do
       it 'should create a course with valid attributes' do
         expect do
-          post '/courses', params: { course: attributes_for(:course, author_id: user.id) }
+          post courses_path, params: { course: attributes_for(:course, author_id: user.id) }
         end.to change(Course, :count).by(1)
       end
 
       it 'should redirect to courses page after creating course' do
         post '/courses', params: { course: attributes_for(:course, author_id: user.id) }
-        expect(response).to redirect_to courses_mycourses_path(user)
+        expect(response).to redirect_to user_courses_mycourses_path(user)
       end
 
       it 'should not create a course with invalid attributes' do
@@ -94,7 +94,7 @@ RSpec.describe 'Courses', type: :request do
 
       it 'should redirect to the courses page if successfully updated' do
         put "/courses/#{course.id}", params: { course: attributes_for(:course) }
-        expect(response).to redirect_to courses_mycourses_path(user)
+        expect(response).to redirect_to user_courses_mycourses_path(user)
       end
 
       it 'should not update a course with invalid attributes' do
@@ -112,7 +112,7 @@ RSpec.describe 'Courses', type: :request do
 
       it 'should redirect to the courses page' do
         delete "/courses/#{course.id}"
-        expect(response).to redirect_to courses_mycourses_path(user)
+        expect(response).to redirect_to user_courses_mycourses_path(user)
       end
     end
   end

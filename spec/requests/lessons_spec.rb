@@ -34,38 +34,38 @@ RSpec.describe 'Lessons', type: :request do
     context 'POST /Course/Lesson' do
       it 'should create a lesson with valid attributes' do
         expect do
-          post "/courses/#{course.id}/lessons", params: { lesson: attributes_for(:lesson, course_id: course.id) }
+          post course_lessons_path(course), params: { lesson: attributes_for(:lesson, course_id: course.id) }
         end.to change(Lesson, :count).by(1)
       end
 
       it 'should redirect to courses page after creating lesson' do
-        post "/courses/#{course.id}/lessons", params: { lesson: attributes_for(:lesson, course_id: course.id) }
-        expect(response).to redirect_to courses_mycourses_path(user)
+        post course_lessons_path(course), params: { lesson: attributes_for(:lesson, course_id: course.id) }
+        expect(response).to redirect_to user_courses_mycourses_path(user)
       end
 
       it 'should not create a lesson with invalid attributes' do
         expect do
-          post "/courses/#{course.id}/lessons", params: { lesson: attributes_for(:lesson, title: nil) }
+          post course_lessons_path(course), params: { lesson: attributes_for(:lesson, title: nil) }
         end.to change(Lesson, :count).by(0)
       end
     end
 
     context 'Put /Course/Lesson' do
       it 'should update a lesson with valid attributes' do
-        put "/courses/#{course.id}/lessons/#{lesson.id}",
+        put course_lesson_path(course, lesson),
             params: { lesson: attributes_for(:lesson, title: 'New title') }
         expect(flash[:notice]).to eq 'Lesson updated successfully'
         expect(Lesson.find(lesson.id).title).to eq 'New title'
       end
 
       it 'should redirect to the courses page if successfully updated' do
-        put "/courses/#{course.id}/lessons/#{lesson.id}",
+        put course_lesson_path(course, lesson),
             params: { lesson: attributes_for(:lesson, title: 'New title') }
-        expect(response).to redirect_to courses_mycourses_path(user)
+        expect(response).to redirect_to user_courses_mycourses_path(user)
       end
 
       it 'should not update a lesson with invalid attributes' do
-        put "/courses/#{course.id}/lessons/#{lesson.id}",
+        put course_lesson_path(course, lesson),
             params: { lesson: attributes_for(:lesson, title: nil) }
         expect(response).to render_template :edit
         expect(flash[:alert]).to eq 'Lesson not updated'
@@ -76,12 +76,12 @@ RSpec.describe 'Lessons', type: :request do
       it 'should destroy a lesson' do
         course
         lesson
-        expect { delete "/courses/#{course.id}/lessons/#{lesson.id}" }.to change(Lesson, :count).by(-1)
+        expect { delete course_lesson_path(course, lesson) }.to change(Lesson, :count).by(-1)
       end
 
       it 'should redirect to the courses page' do
-        delete "/courses/#{course.id}/lessons/#{lesson.id}"
-        expect(response).to redirect_to courses_mycourses_path(user)
+        delete course_lesson_path(course, lesson)
+        expect(response).to redirect_to user_courses_mycourses_path(user)
       end
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe 'Lessons', type: :request do
     context 'POST /Course/Lesson' do
       it 'should not be able to create a lesson' do
         expect do
-          post "/courses/#{course.id}/lessons", params: { lesson: attributes_for(:lesson, course_id: course.id) }
+          post course_lessons_path(course), params: { lesson: attributes_for(:lesson, course_id: course.id) }
         end.to raise_error(CanCan::AccessDenied)
       end
     end
@@ -122,7 +122,7 @@ RSpec.describe 'Lessons', type: :request do
     context 'Put /Course/Lesson' do
       it 'should not be able to edit a lesson' do
         expect do
-          put "/courses/#{course.id}/lessons/#{lesson.id}",
+          put course_lesson_path(course, lesson),
               params: { lesson: attributes_for(:lesson, title: 'New title') }
         end.to raise_error(CanCan::AccessDenied)
       end
@@ -130,7 +130,7 @@ RSpec.describe 'Lessons', type: :request do
 
     context 'Delete /Course/Lesson' do
       it 'should not be able to delete a lesson' do
-        expect { delete "/courses/#{course.id}/lessons/#{lesson.id}" }.to raise_error(CanCan::AccessDenied)
+        expect { delete course_lesson_path(course, lesson) }.to raise_error(CanCan::AccessDenied)
       end
     end
   end

@@ -5,5 +5,11 @@ class UserCoursesController < ApplicationController
 
   def explore
     @courses = Course.where.not(author_id: current_user.id)
+                     .where.not(id: Registration.where(user_id: current_user.id)
+                     .pluck(:course_id))
+  end
+
+  def registrations
+    @courses = Course.where(id: Registration.where(user_id: current_user.id).pluck(:course_id))
   end
 end

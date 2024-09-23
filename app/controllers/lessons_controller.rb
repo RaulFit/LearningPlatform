@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
   def create
     if @lesson.save
       flash[:notice] = 'Lesson created successfully'
-      redirect_to courses_mycourses_path(current_user)
+      redirect_to user_courses_mycourses_path(current_user)
     else
       flash[:alert] = 'Lesson not created'
       render :new, status: :unprocessable_entity
@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
   def update
     if @lesson.update(lesson_params)
       flash[:notice] = 'Lesson updated successfully'
-      redirect_to courses_mycourses_path(current_user)
+      redirect_to user_courses_mycourses_path(current_user)
     else
       flash[:alert] = 'Lesson not updated'
       render :edit, status: :unprocessable_entity
@@ -33,7 +33,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     flash[:notice] = 'Lesson deleted successfully'
-    redirect_to courses_mycourses_path(current_user)
+    redirect_to user_courses_mycourses_path(current_user)
   end
 
   protected

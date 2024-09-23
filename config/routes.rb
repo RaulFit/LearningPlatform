@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'pages/hero'
   get 'user_courses/mycourses'
   get 'user_courses/explore'
+  get 'user_courses/registrations'
   resources :user_sessions, only: %i[new create destroy]
   resources :users, only: %i[show index new create]
   resources :courses do
