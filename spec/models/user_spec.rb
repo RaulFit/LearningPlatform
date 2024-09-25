@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
   describe 'associations' do
     it { is_expected.to have_many(:authored_courses).dependent(:destroy) }
     it { is_expected.to have_many(:comments).dependent(:destroy) }
-    it { is_expected.to have_many(:registrations).dependent(:destroy) }
+    it { is_expected.to have_many(:enrolments).dependent(:destroy) }
   end
 
   describe 'validations' do

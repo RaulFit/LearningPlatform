@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :authored_courses, class_name: 'Course', foreign_key: 'author_id', dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :registrations, dependent: :destroy
+  has_many :enrolments, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 1 }
   validates :email, presence: true, uniqueness: true, length: { minimum: 3 }

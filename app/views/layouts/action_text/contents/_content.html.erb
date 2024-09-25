@@ -1,18 +1,3 @@
 <div class="trix-content">
-    <%= yield -%>
-  <div class="flex justify-center gap-2 py-4">
-    <% if @course.lessons.index(@lesson) == 1 %>
-    <%= link_to "Back", course_path(@course), class:"inline-flex items-center border border-indigo-300 px-3
-      py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg"%>
-    <% elsif @course.lessons.index(@lesson) == 0 %>
-    <%= link_to "My Courses", user_courses_mycourses_path, class:"inline-flex items-center border border-indigo-300 px-3
-      py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg"%>
-    <% else %>
-       <%= link_to "Back", course_lesson_path(@course, @course.lessons[[0, @course.lessons.index(@lesson) - 1].max]), class:"inline-flex items-center border border-indigo-300 px-3
-      py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg"%>
-    <% end %>
-
-    <%= link_to "Next", course_lesson_path(@course, @course.lessons[[@course.lessons.size - 1, @course.lessons.index(@lesson) + 1].min]), class:"inline-flex items-center border border-indigo-300 px-3
-      py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg"%>
-  </div>
+  <%= yield -%>
 </div>

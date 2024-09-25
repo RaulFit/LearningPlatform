@@ -13,7 +13,7 @@ RSpec.describe 'Users', type: :request do
   context 'POST /User' do
     it 'should create a user with valid attributes' do
       post users_path, params: { user: attributes_for(:user) }
-      expect(response).to redirect_to users_path
+      expect(response).to redirect_to new_user_session_path
       expect(flash[:notice]).to eq 'User created successfully'
     end
 

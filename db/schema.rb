@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_921_211_706) do
+ActiveRecord::Schema[7.1].define(version: 20_240_925_145_315) do
   create_table 'action_text_rich_texts', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body'
@@ -69,21 +69,21 @@ ActiveRecord::Schema[7.1].define(version: 20_240_921_211_706) do
     t.index ['author_id'], name: 'index_courses_on_author_id'
   end
 
+  create_table 'enrolments', force: :cascade do |t|
+    t.integer 'user_id', null: false
+    t.integer 'course_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['course_id'], name: 'index_enrolments_on_course_id'
+    t.index ['user_id'], name: 'index_enrolments_on_user_id'
+  end
+
   create_table 'lessons', force: :cascade do |t|
     t.string 'title'
     t.integer 'course_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['course_id'], name: 'index_lessons_on_course_id'
-  end
-
-  create_table 'registrations', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.integer 'course_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['course_id'], name: 'index_registrations_on_course_id'
-    t.index ['user_id'], name: 'index_registrations_on_user_id'
   end
 
   create_table 'users', force: :cascade do |t|
@@ -97,6 +97,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_921_211_706) do
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'registrations', 'courses'
-  add_foreign_key 'registrations', 'users'
+  add_foreign_key 'enrolments', 'courses'
+  add_foreign_key 'enrolments', 'users'
 end

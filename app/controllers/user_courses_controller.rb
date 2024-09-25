@@ -1,4 +1,7 @@
 class UserCoursesController < ApplicationController
+  load_and_authorize_resource :course
+  load_and_authorize_resource :lesson, through: :course
+
   def mycourses
     @courses = Course.where(author_id: current_user.id)
   end

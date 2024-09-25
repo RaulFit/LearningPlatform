@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :registration do
+  factory :enrolment do
     association :user
     association :course
   end

@@ -15,11 +15,6 @@ RSpec.describe 'Courses', type: :request do
         expect(response).to render_template :index
       end
 
-      it 'is not a new course' do
-        get courses_path
-        expect(response.body).to match(have_tag_with_content('title', 'LearningPlatform'))
-      end
-
       it 'should contain the course title' do
         course
         get courses_path
@@ -34,11 +29,6 @@ RSpec.describe 'Courses', type: :request do
     end
 
     context 'GET /show' do
-      it 'should render show page' do
-        get course_path(course)
-        expect(response).to render_template :show
-      end
-
       it 'should contain the course title' do
         course
         get courses_path

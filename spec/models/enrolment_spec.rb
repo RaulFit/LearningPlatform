@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Registration, type: :model do
-  subject { create(:registration) }
+RSpec.describe Enrolment, type: :model do
+  subject { create(:enrolment) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }

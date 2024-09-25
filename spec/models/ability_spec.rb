@@ -7,7 +7,7 @@ RSpec.describe Ability, type: :model do
   let(:course) { create(:course, author: user) }
   let(:comment) { create(:comment, user:, course:) }
   let(:lesson) { create(:lesson, course:) }
-  let(:registration) { create(:registration, user:, course:) }
+  let(:enrolment) { create(:enrolment, user:, course:) }
 
   describe 'User' do
     describe 'abilities' do
