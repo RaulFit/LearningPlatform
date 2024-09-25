@@ -9,7 +9,27 @@
                 <%= link_to 'Home', root_path, class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
                 <%= link_to 'Features', '/pages/features', class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
                 <% if current_user %>
-                <%= link_to 'Explore', user_courses_explore_path, class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
+                <div class="relative inline-block text-left">
+                    <div class="group py-1">
+                        <button type="button"
+                            class="inline-flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-600
+                             hover:bg-gray-800 focus:outline-none focus:bg-gray-700 rounded-lg">Courses
+                            <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 12l-5-5h10l-5 5z" />
+                            </svg>
+                        </button>
+
+                        <div
+                            class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
+                            <div class="py-1">
+                            <%= link_to "My learning", user_enroled_courses_path(current_user), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                            <%= link_to "My courses", user_authored_courses_path(current_user), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                            <%= link_to 'Explore', user_available_courses_path(current_user), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                            <%= link_to 'Add course', new_course_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="relative inline-block text-left">
                     <div class="group py-1">
                         <button type="button"
