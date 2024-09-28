@@ -3,10 +3,10 @@
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
       <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
-          <%= link_to "Owned courses", user_courses_mycourses_path, class:"rounded-md px-3 py-2 text-black hover:bg-indigo-700 hover:text-white" %>
+          <%= link_to "#{t :owned_courses}", courses_path(authored: true), class:"rounded-md px-3 py-2 text-black hover:bg-indigo-700 hover:text-white" %>
         </li>
         <li>
-          <%= link_to "Profile", user_path(current_user), class:"rounded-md px-3 py-2 text-black hover:bg-indigo-700 hover:text-white" %>
+          <%= link_to "#{t :profile}", user_path(current_user), class:"rounded-md px-3 py-2 text-black hover:bg-indigo-700 hover:text-white" %>
         </li>
       </ul>
     </div>
@@ -17,7 +17,7 @@
     <div class="bg-gray-100 p-5 mt-10 rounded-lg">
       <h1 class="font-bold text-2xl mb-2"><%= course.title %></h1>
       <p class="my-3"><%= course.description %></p>
-      <%= link_to "Resume", course_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
+      <%= link_to "#{t :resume}", course_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
       <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-5">
         <div class="bg-indigo-700 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
       </div>

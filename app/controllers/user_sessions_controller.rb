@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:alert] = 'Login failed'
+      flash[:alert] = t(:login_alert)
       redirect_to new_user_session_path
     end
   end

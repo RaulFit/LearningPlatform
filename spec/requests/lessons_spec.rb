@@ -40,7 +40,7 @@ RSpec.describe 'Lessons', type: :request do
 
       it 'should redirect to courses page after creating lesson' do
         post course_lessons_path(course), params: { lesson: attributes_for(:lesson, course_id: course.id) }
-        expect(response).to redirect_to user_authored_courses_path(user)
+        expect(response).to redirect_to courses_path(authored: true)
       end
 
       it 'should not create a lesson with invalid attributes' do
@@ -61,7 +61,7 @@ RSpec.describe 'Lessons', type: :request do
       it 'should redirect to the courses page if successfully updated' do
         put course_lesson_path(course, lesson),
             params: { lesson: attributes_for(:lesson, title: 'New title') }
-        expect(response).to redirect_to user_authored_courses_path(user)
+        expect(response).to redirect_to courses_path(authored: true)
       end
 
       it 'should not update a lesson with invalid attributes' do
@@ -81,7 +81,7 @@ RSpec.describe 'Lessons', type: :request do
 
       it 'should redirect to the courses page' do
         delete course_lesson_path(course, lesson)
-        expect(response).to redirect_to user_authored_courses_path(user)
+        expect(response).to redirect_to courses_path(authored: true)
       end
     end
   end

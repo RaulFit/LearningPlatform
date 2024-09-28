@@ -1,9 +1,30 @@
+<%= render 'pages/navbar' %>
 <div class="flex flex-col p-5 lg:px-48 lg:py-11">
-    <% @courses.each do |course| %>
-        <div class="bg-gray-100 p-5 mb-10 mt-10">
-            <h1 class="font-bold text-2xl mb-2"><%= course.title %></h1>
-            <p class="my-3"><%= course.description %></p>
-            <%= link_to "Read more...", course_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
+  <% @courses.each do |course| %>
+    <% if @available %>
+      <div class="bg-gray-100 p-5 mt-10 rounded-lg">
+        <h1 class="font-bold text-2xl mb-2"><%= course.title %></h1>
+        <p class="my-3"><%= course.description %></p>
+        <%= link_to "#{t :read_more}", course_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
+        <%= link_to "#{t :enrol}", new_enrolment_path(course_id: course.id), class:"text-white font-semibold bg-indigo-600 hover:bg-indigo-800 p-2 my-1 rounded" %>
+      </div>
+    <% elsif @authored %>
+      <div class="bg-gray-100 p-5 mt-10 rounded-lg">
+        <h1 class="font-bold text-2xl mb-2"><%= course.title %></h1>
+        <p class="my-3"><%= course.description %></p>
+        <%= link_to "#{t :read_more}", course_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
+        <%= link_to "#{t :add_lesson}",  new_course_lesson_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
+        <%= link_to "#{t :edit}", edit_course_path(course), class:"text-white font-semibold bg-indigo-600 hover:bg-indigo-800 p-2 my-1 rounded" %>
+      </div>
+    <% elsif @enroled%>
+      <div class="bg-gray-100 p-5 mt-10 rounded-lg">
+        <h1 class="font-bold text-2xl mb-2"><%= course.title %></h1>
+        <p class="my-3"><%= course.description %></p>
+        <%= link_to "#{t :resume}", course_path(course), class:"text-white font-semibold bg-gray-600 hover:bg-gray-700 p-2 my-1 rounded" %>
+        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-5">
+          <div class="bg-indigo-700 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full" style="width: 45%"> 45%</div>
         </div>
+      </div>
     <% end %>
+  <% end %>
 </div>

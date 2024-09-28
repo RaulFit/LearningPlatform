@@ -10,7 +10,7 @@
                   <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256
 			c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128
 		                   	c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z"></path></g></g></svg>
-            <span class="ml-1"><%= @course.lessons.count%> Lessons</span>
+            <span class="ml-1"><%= @course.lessons.count%> <%= "#{t :lessons}"%>></span>
           </span>
           <a href="#" class="flex flex-row items-center hover:text-indigo-600  mr-3">
             <svg class="text-indigo-600" fill="currentColor" height="16px" aria-hidden="true" role="img"

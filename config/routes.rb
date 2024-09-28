@@ -5,15 +5,19 @@ Rails.application.routes.draw do
 
   resources :user_sessions, only: %i[new create destroy]
 
-  resources :users, only: %i[show index new create] do
-    resources :authored_courses, only: :index
-    resources :available_courses, only: :index
-    resources :enroled_courses, only: :index
-  end
+  resources :users, only: %i[show index new create]
+
+  resources :enrolments, only: %i[new create destroy]
 
   resources :courses do
     resources :lessons
     resources :comments
+  end
+
+  scope '/:locale' do
+    resources :users
+    resources :courses
+    resources :lessons
     resources :enrolments
   end
 end

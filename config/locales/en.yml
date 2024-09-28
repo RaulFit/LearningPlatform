@@ -27,5 +27,90 @@
 #       "yes": yup
 #       enabled: "ON"
 
-en:
+en:     
   hello: "Hello world"
+
+  course_notice: "Course created successfully"
+  course_alert: "Course not created"
+  course_update_notice: "Course updated successfully"
+  course_alert_notice: "Course not updated"
+  course_destroy_notice: "Course deleted successfully"
+
+  enrolment_notice: "Successfully enroled to"
+
+  lesson_notice: "Lesson created successfully"
+  lesson_alert: "Lesson not created"
+  lesson_update_notice: "Lesson updated successfully"
+  lesson_update_alert: "Lesson not updated"
+  lesson_destroy_notice: "Lesson deleted successfully"
+
+  login_alert : "Login failed"
+
+  user_notice: "User created successfully"
+  user_alert: "User not created"
+
+  create_new_course: "Create a new course"
+  edit_course: "Edit course"
+  create_course: "Create course"
+
+  read_more: "Read more..."
+
+  add_lesson: "Add lesson"
+
+  add_new_lesson: "Add a new lesson"
+
+  enrol: "Enrol"
+
+  edit: "Edit"
+
+  resume: "Resume"
+
+  lesson: "Lessons"
+
+  owned_courses: "Owned courses"
+
+  profile: "Profile"
+
+  enrol_to: "Enrol to"
+
+  courses_demand: "Courses on demand"
+
+  choose_topics: "Choose from many topics, skill levels, and languages"
+
+  register_to: "Register to many high-quality on-demand online courses. Or create your own! Start learning today."
+
+  try_it_free: "Try it free"
+
+  learn_more: "Learn more"
+
+  learning_platform: "Learning platform"
+
+  home: "Home"
+
+  features: "Features"
+
+  courses: "Courses"
+
+  my_learning: "My learning"
+
+  my_courses: "My courses"
+
+  explore: "Explore"
+
+  add_course: "Add course"
+
+  profile: "Profile"
+
+  log_out: "Log out"
+
+  log_in: "Log in"
+
+  login: "Login"
+
+  sign_up: "Sign up"
+
+  log_in_accout: "Log in to your account"
+
+  dont_have_account: "Don’t have an account yet?"
+
+  create_account: "Create a new account"

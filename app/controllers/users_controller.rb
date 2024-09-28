@@ -15,10 +15,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = 'User created successfully'
+      flash[:notice] = t(:user_notice)
       redirect_to new_user_session_path
     else
-      flash[:alert] = 'User not created'
+      flash[:alert] = t(:user_alert)
       render :new, status: :unprocessable_entity
     end
   end

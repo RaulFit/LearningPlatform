@@ -1,14 +1,16 @@
 class EnrolmentsController < ApplicationController
-  load_and_authorize_resource :course
-  load_and_authorize_resource :enrolment, through: :course
+  load_and_authorize_resource
 
-  def new; end
+  def new
+    @course = Course.find(params[:course_id])
+  end
 
   def create
+    @course = Course.find(enrolment_params[:course_id])
     return unless @enrolment.save
 
-    flash[:notice] = "Successfully enroled to #{@course.title}"
-    redirect_to user_enroled_courses_path(current_user)
+    flash[:notice] = "#{t(:enrolment_notice)} #{@course.title}"
+    redirect_to courses_path(enroled: true)
   end
 
   def destroy

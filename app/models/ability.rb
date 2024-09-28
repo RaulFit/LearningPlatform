@@ -7,8 +7,6 @@ class Ability
     can :manage, Course, author: user
     can :manage, Lesson, course: { author_id: user.id }
     can :read, Course
-    can :manage, Enrolment do |enrolment|
-      enrolment.course.author_id != user.id
-    end
+    can %i[create destroy], Enrolment
   end
 end
