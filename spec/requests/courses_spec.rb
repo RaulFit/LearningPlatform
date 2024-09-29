@@ -38,31 +38,31 @@ RSpec.describe 'Courses', type: :request do
       end
 
       it 'should redirect to courses page after creating course' do
-        post '/courses', params: { course: attributes_for(:course, author_id: user.id) }
+        post courses_path, params: { course: attributes_for(:course, author_id: user.id) }
         expect(response).to redirect_to courses_path(authored: true)
       end
 
       it 'should not create a course with invalid attributes' do
         expect do
-          post '/courses', params: { course: attributes_for(:course, title: nil) }
+          post courses_path, params: { course: attributes_for(:course, title: nil) }
         end.to change(Course, :count).by(0)
       end
     end
 
     context 'Put /Course' do
       it 'should update a course with valid attributes' do
-        put "/courses/#{course.id}", params: { course: attributes_for(:course, title: 'New title') }
+        put course_path(course), params: { course: attributes_for(:course, title: 'New title') }
         expect(flash[:notice]).to eq 'Course updated successfully'
         expect(Course.find(course.id).title).to eq 'New title'
       end
 
       it 'should redirect to the courses page if successfully updated' do
-        put "/courses/#{course.id}", params: { course: attributes_for(:course) }
+        put course_path(course), params: { course: attributes_for(:course) }
         expect(response).to redirect_to courses_path(authored: true)
       end
 
       it 'should not update a course with invalid attributes' do
-        put "/courses/#{course.id}", params: { course: attributes_for(:course, title: nil) }
+        put course_path(course), params: { course: attributes_for(:course, title: nil) }
         expect(response).to render_template :edit
         expect(flash[:alert]).to eq 'Course not updated'
       end
@@ -71,11 +71,11 @@ RSpec.describe 'Courses', type: :request do
     context 'Delete /Course' do
       it 'should destroy a course' do
         course
-        expect { delete "/courses/#{course.id}" }.to change(Course, :count).by(-1)
+        expect { delete course_path(course) }.to change(Course, :count).by(-1)
       end
 
       it 'should redirect to the courses page' do
-        delete "/courses/#{course.id}"
+        delete course_path(course)
         expect(response).to redirect_to courses_path(authored: true)
       end
     end
@@ -109,7 +109,7 @@ RSpec.describe 'Courses', type: :request do
     context 'POST /Course' do
       it 'should not be able to create a course' do
         expect do
-          post '/courses', params: { course: attributes_for(:course, author_id: user.id) }
+          post courses_path, params: { course: attributes_for(:course, author_id: user.id) }
         end.to raise_error(CanCan::AccessDenied)
       end
     end
@@ -117,7 +117,7 @@ RSpec.describe 'Courses', type: :request do
     context 'Put /Course' do
       it 'should not be able to edit a course' do
         expect do
-          put "/courses/#{course.id}",
+          put course_path(course),
               params: { course: attributes_for(:course, title: 'New title') }
         end.to raise_error(CanCan::AccessDenied)
       end
@@ -125,7 +125,7 @@ RSpec.describe 'Courses', type: :request do
 
     context 'Delete /Course' do
       it 'should not be able to delete a course' do
-        expect { delete "/courses/#{course.id}" }.to raise_error(CanCan::AccessDenied)
+        expect { delete course_path(course) }.to raise_error(CanCan::AccessDenied)
       end
     end
   end

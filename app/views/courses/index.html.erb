@@ -1,5 +1,9 @@
 <%= render 'pages/navbar' %>
 <div class="flex flex-col p-5 lg:px-48 lg:py-11">
+  <% if @courses.blank? %>
+    <%= render 'pages/empty' %>
+    <%= yield -%>
+  <% end %>
   <% @courses.each do |course| %>
     <% if @available %>
       <div class="bg-gray-100 p-5 mt-10 rounded-lg">

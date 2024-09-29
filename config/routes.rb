@@ -13,11 +13,4 @@ Rails.application.routes.draw do
     resources :lessons
     resources :comments
   end
-
-  scope '/:locale' do
-    resources :users
-    resources :courses
-    resources :lessons
-    resources :enrolments
-  end
 end

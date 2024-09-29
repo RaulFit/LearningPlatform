@@ -2,7 +2,7 @@
       <div class="w-full bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
             <%= form_with model: @enrolment do |f| %>
-              <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"><%= "#{t :enrol_to}" @course.title %>?</h1>
+              <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"><%= "#{t :enrol_to} #{@course.title}" %>?</h1>
               <% if @enrolment.errors.any? %>
                 <div class="mb-6">
                   <ul>
