@@ -3,14 +3,15 @@ class CoursesController < ApplicationController
 
   def index
     if params[:available]
-      @courses = Course.available_to_enrol(current_user.id)
-      @available = true
+      @courses = @courses.available(current_user.id).map do |course|
+        { course:, available: true }
+      end
     elsif params[:enroled]
-      @courses = Course.current_user_is_enroled(current_user.id)
-      @enroled = true
+      @courses = @courses.enroled(current_user.id).map do |course|
+        { course:, enroled: true }
+      end
     elsif params[:authored]
-      @courses = current_user.authored_courses
-      @authored = true
+      @courses = current_user.authored_courses.map { |course| { course:, authored: true } }
     end
   end
 

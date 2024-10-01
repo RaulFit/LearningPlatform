@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
-  scope :current_user_is_enroled, ->(id) { where(id: Enrolment.where(user_id: id).pluck(:course_id)) }
-  scope :available_to_enrol, ->(id) { where.not(author_id: id).where.not(id: current_user_is_enroled(id)) }
+  scope :enroled, ->(user_id) { where(id: Enrolment.where(user_id:).pluck(:course_id)) }
+  scope :available, ->(user_id) { where.not(id: enroled(user_id)) }
 
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
   has_many :lessons, dependent: :destroy

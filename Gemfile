@@ -60,6 +60,7 @@ group :development, :test do
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'rspec-wait'
 end
 
 group :development do
