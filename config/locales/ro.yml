@@ -1,0 +1,139 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     en:
+#       "yes": yup
+#       enabled: "ON"
+
+ro:     
+  hello: "Salut lume"
+
+  course_notice: "Cursul a fost creat cu succes"
+  course_alert: "Cursul nu a fost creat"
+  course_update_notice: "Cursul a fost actualizat cu succes"
+  course_alert_notice: "Cursul nu a fost actualizat"
+  course_destroy_notice: "Cursul a fost sters cu succes"
+
+  enrolment_notice: "Te-ai inscris cu succes la"
+
+  lesson_notice: "Lectia a fost creata cu succes"
+  lesson_alert: "Lectia nu a fost creata"
+  lesson_update_notice: "Lectia a fost actualizata cu succes"
+  lesson_update_alert: "Lectia nu a fost actualizata"
+  lesson_destroy_notice: "Lectia a fost stearsa cu succes"
+
+  login_alert : "Logarea a esuat"
+
+  user_notice: "Utilizator creat cu succes"
+  user_alert: "Utilizatorul nu a fost creat"
+
+  create_new_course: "Creeaza un curs nou"
+  edit_course: "Editeaza curs"
+  create_course: "Creeaza curs"
+
+  read_more: "Citeste mai mult..."
+
+  add_lesson: "Adauga lectie"
+
+  add_new_lesson: "Adauga o lectie noua"
+
+  enrol: "Inscrie-te"
+
+  edit: "Editeaza"
+
+  resume: "Reia"
+
+  lesson: "Lectii"
+
+  owned_courses: "Cursurile mele"
+
+  profile: "Profil"
+
+  enrol_to: "Inscrie-te la"
+
+  courses_demand: "Cursuri la cerere"
+
+  choose_topics: "Alege din diverse topicuri, dificultate si limbi"
+
+  register_to: "Inscrie-te la cursuri de cea mai buna calitate. Sau creeaza-ti propriul curs! Incepe sa inveti azi."
+
+  try_it_free: "Incearca gratis"
+
+  learn_more: "Afla mai multe"
+
+  learning_platform: "Platforma de invatare"
+
+  home: "Acasa"
+
+  features: "Avantaje"
+
+  courses: "Cursuri"
+
+  my_learning: "Cursuri incepute"
+
+  my_courses: "Cursurile mele"
+
+  explore: "Exploreaza"
+
+  add_course: "Adauga curs"
+
+  profile: "Profil"
+
+  log_out: "Deconecteaza"
+
+  log_in: "Conecteaza-te"
+
+  login: "Conecteaza"
+
+  sign_up: "Inscrie-te"
+
+  log_in_accout: "Conecteaza-te la contul tau"
+
+  dont_have_account: "Nu ai un cont inca ?"
+
+  create_account: "Creeaza un cont nou"
+
+  activerecord:
+    models:
+      user: Utilizator
+      course: Curs
+      lesson: Lectie
+      comment: Comentariu
+      enrolment: Inscriere
+    attributes:
+      user:
+        username: "Nume utilizator"
+        email: "email"
+        password: "Parola"
+        password_confirmation: "Confirmare parola"
+      course:
+        title: "Titlu"
+        description: "Descriere"
+      lesson:
+        title: "Titlu"
+        content: "Continut"
+      comment:
+        body: "Continut"
+

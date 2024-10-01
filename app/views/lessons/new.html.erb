@@ -2,7 +2,7 @@
       <div class="w-full bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 overflow-auto">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
             <%= form_for [ @course, @lesson ] do |f| %>
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"><%= t :add_new_lesson %>></h1>
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"><%= t :add_new_lesson %></h1>
               <% if @lesson.errors.any? %>
                 <div class="mb-6">
                   <ul>
