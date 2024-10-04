@@ -65,7 +65,7 @@ ro:
 
   resume: "Reia"
 
-  lesson: "Lectii"
+  lessons: "Lectii"
 
   owned_courses: "Cursurile mele"
 
@@ -79,7 +79,7 @@ ro:
 
   register_to: "Inscrie-te la cursuri de cea mai buna calitate. Sau creeaza-ti propriul curs! Incepe sa inveti azi."
 
-  try_it_free: "Incearca gratis"
+  try_free: "Incearca gratis"
 
   learn_more: "Afla mai multe"
 

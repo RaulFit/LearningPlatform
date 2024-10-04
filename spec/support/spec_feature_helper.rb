@@ -4,6 +4,6 @@ module SpecFeatureHelper
     fill_in 'Username', with: user.username
     fill_in 'Password', with: user.password
     click_on 'Login'
-    wait_for { current_path }.to eq(root_path)
+    expect(page).to have_content 'Explore'
   end
 end

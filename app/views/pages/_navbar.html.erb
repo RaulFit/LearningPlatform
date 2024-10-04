@@ -7,6 +7,7 @@
         </a>
         <%= link_to "#{t :home}", root_path, class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
         <% if current_user %>
+         <%= link_to "#{t :explore}", courses_path(available: true), class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
           <div class="relative inline-block text-left">
             <div class="group py-1">
               <button type="button" id="dropdown"
@@ -21,7 +22,6 @@
                 <div class="py-1">
                   <%= link_to "#{t :my_learning}", courses_path(enroled: true), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                   <%= link_to "#{t :my_courses}", courses_path(authored: true), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                  <%= link_to "#{t :explore}", courses_path(available: true), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                   <%= link_to "#{t :add_course}", new_course_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                 </div>
               </div>
