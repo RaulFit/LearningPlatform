@@ -28,6 +28,8 @@
                 
                 <%= f.text_field :course_id, type: "hidden", value: @course.id %>
 
+                <%= f.text_field :position, type: "hidden", value: @course.lessons.count %>
+
                 <p class="mb-6">
                   <%= f.submit "#{t :add_lesson}", class:"flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
                 </p>

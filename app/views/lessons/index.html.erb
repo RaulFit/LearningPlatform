@@ -1,0 +1,14 @@
+<%= render 'pages/navbar' %>
+
+<div class="max-w-3xl mx-auto text-center mt-5 mb-10">
+  <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-2 border-t-4 border-b-4 border-indigo-400 py-4">
+    Reorder lessons for <%= @course.title %>
+  </h1>
+</div>
+<% @lessons.each do |lesson| %>
+      <div class="bg-gray-100 p-5 mt-2 rounded-lg">
+        <h1 class="font-bold text-2xl mb-2"><%= lesson.title %></h1>
+        <%= link_to 'Up', course_lessons_path(@course, position: lesson.position, up: true)%>
+        <%= link_to 'Down', course_lessons_path(@course, position: lesson.position, down: true)%>
+      </div>
+<% end %>

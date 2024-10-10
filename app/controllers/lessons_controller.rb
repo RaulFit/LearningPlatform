@@ -2,7 +2,15 @@ class LessonsController < ApplicationController
   load_and_authorize_resource :course
   load_and_authorize_resource :lesson, through: :course
 
-  def index; end
+  def index
+    if params[:up] && params[:position].to_i.positive?
+      helpers.move_lower
+    elsif params[:down] && params[:position].to_i < @lessons.count - 1
+      helpers.move_higher
+    end
+
+    @lessons = @lessons.order(:position)
+  end
 
   def show; end
 
@@ -39,6 +47,6 @@ class LessonsController < ApplicationController
   protected
 
   def lesson_params
-    params.require(:lesson).permit(:title, :content, :course_id)
+    params.require(:lesson).permit(:title, :content, :course_id, :position)
   end
 end

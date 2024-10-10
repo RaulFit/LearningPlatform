@@ -1,1 +1,15 @@
-<%= @lesson.content %>
+<div class="flex justify-center items-center">
+  <div class="content-center">
+    <%= @lesson.content %>
+    <% if @lesson.position == 1 %>
+      <%= link_to "Back", course_path(@course), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+      <%= link_to "Next", course_lesson_path(@course, @course.lessons[@lesson.position + 1]), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+    <% elsif @lesson.position == @course.lessons.size - 1 %>
+      <%= link_to "Back", course_lesson_path(@course, @course.lessons[@lesson.position - 1]), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+      <%= link_to "Finish", courses_path(enroled: true), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+    <% else %>
+      <%= link_to "Back", course_lesson_path(@course, @course.lessons[@lesson.position - 1]), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+      <%= link_to "Next", course_lesson_path(@course, @course.lessons[@lesson.position + 1]), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+    <% end %>
+  </div>
+</div>

@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   def index
     if params[:available]
-      @available_courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"])
+      @available_courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"]).available(current_user.id)
       @available = true
     elsif params[:enroled]
       @enroled_courses = @courses.enroled(current_user.id)

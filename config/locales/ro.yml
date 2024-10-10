@@ -115,6 +115,8 @@ ro:
 
   create_account: "Creeaza un cont nou"
 
+  reorder_lessons: "Rearanjeaza lectiile"
+
   activerecord:
     models:
       user: Utilizator
