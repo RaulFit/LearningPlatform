@@ -1,23 +1,21 @@
 class LessonsController < ApplicationController
   load_and_authorize_resource :course
+  load_and_authorize_resource :enrolment, through: :course
   load_and_authorize_resource :lesson, through: :course
+  load_and_authorize_resource :course_lesson, through: :course
 
-  def index
-    if params[:up] && params[:position].to_i.positive?
-      helpers.move_lower
-    elsif params[:down] && params[:position].to_i < @lessons.count - 1
-      helpers.move_higher
-    end
+  def index; end
 
-    @lessons = @lessons.order(:position)
+  def show
+    @course_lesson = @course.course_lessons.find_by(lesson_id: @lesson.id)
   end
-
-  def show; end
 
   def new; end
 
   def create
     if @lesson.save
+      @course.course_lessons.create(course_id: @course.id, lesson_id: @lesson.id,
+                                    position: @course.course_lessons.count)
       flash[:notice] = t(:lesson_notice)
       redirect_to courses_path(authored: true)
     else
@@ -47,6 +45,6 @@ class LessonsController < ApplicationController
   protected
 
   def lesson_params
-    params.require(:lesson).permit(:title, :content, :course_id, :position)
+    params.require(:lesson).permit(:title, :content, :course_id)
   end
 end

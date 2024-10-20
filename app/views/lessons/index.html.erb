@@ -5,10 +5,11 @@
     Reorder lessons for <%= @course.title %>
   </h1>
 </div>
-<% @lessons.each do |lesson| %>
+<% @course.lessons.each do |lesson| %>
       <div class="bg-gray-100 p-5 mt-2 rounded-lg">
         <h1 class="font-bold text-2xl mb-2"><%= lesson.title %></h1>
-        <%= link_to 'Up', course_lessons_path(@course, position: lesson.position, up: true)%>
-        <%= link_to 'Down', course_lessons_path(@course, position: lesson.position, down: true)%>
+        <% course_lesson = @course.get_course_lesson(lesson) %>
+        <%= link_to 'Up', course_course_lesson_path(@course, course_lesson, position: course_lesson.position, up: true), data: {turbo_method: :put} %>
+        <%= link_to 'Down', course_course_lesson_path(@course, course_lesson, position: course_lesson.position, down: true), data: {turbo_method: :put} %>
       </div>
 <% end %>

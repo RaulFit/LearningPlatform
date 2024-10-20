@@ -19,12 +19,12 @@
       <circle cx="67.0702" cy="31.0854" r="1.36752" fill="#4F46E5" />
     </svg>
     <div>
-      <h2 class="text-center text-black text-xl font-semibold leading-loose pb-2">There’s no product here</h2>
+      <h2 class="text-center text-black text-xl font-semibold leading-loose pb-2">There’s no courses here</h2>
       <p class="text-center text-black text-base font-normal leading-relaxed pb-4">Try changing your filters to <br />
-        see appointments </p>
+        see available courses </p>
       <div class="flex gap-3">
-        <button class="w-full px-3 py-2 rounded-full border border-gray-300 text-gray-900 text-xs font-semibold leading-4"> Clear Filter </button>
-        <button class="w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700 transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4"> Change Filter </button>
+        <%= link_to 'Change filters', courses_path(available: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700 transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
+        
       </div>
     </div>
   </div>

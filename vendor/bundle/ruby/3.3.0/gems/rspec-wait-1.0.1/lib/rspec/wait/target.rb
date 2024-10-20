@@ -14,7 +14,6 @@ module RSpec
 
       # From: https://github.com/rspec/rspec-expectations/blob/v3.4.0/lib/rspec/expectations/expectation_target.rb#L52-L55
       def to(matcher = nil, message = nil, &block)
-        binding.break
         prevent_operator_matchers(:to) unless matcher
 
         with_wait do

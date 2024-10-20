@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :course
+  load_and_authorize_resource :course_lesson, through: :course
 
   def index
     if params[:available]
@@ -15,7 +16,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @lesson = @course.lessons.first
+    @course_lesson = @course.course_lessons.order(:position).first
   end
 
   def create
@@ -49,6 +50,6 @@ class CoursesController < ApplicationController
   protected
 
   def course_params
-    params.require(:course).permit(:title, :description, :author_id)
+    params.require(:course).permit(:title, :description, :author_id, :photo)
   end
 end

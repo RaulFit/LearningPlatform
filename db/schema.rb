@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_241_007_135_803) do
+ActiveRecord::Schema[7.1].define(version: 20_241_012_200_333) do
   create_table 'action_text_rich_texts', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body'
@@ -60,6 +60,16 @@ ActiveRecord::Schema[7.1].define(version: 20_241_007_135_803) do
     t.index ['user_id'], name: 'index_comments_on_user_id'
   end
 
+  create_table 'course_lessons', force: :cascade do |t|
+    t.integer 'course_id', null: false
+    t.integer 'lesson_id', null: false
+    t.integer 'position'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['course_id'], name: 'index_course_lessons_on_course_id'
+    t.index ['lesson_id'], name: 'index_course_lessons_on_lesson_id'
+  end
+
   create_table 'courses', force: :cascade do |t|
     t.string 'title'
     t.text 'description'
@@ -74,6 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 20_241_007_135_803) do
     t.integer 'course_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.integer 'progress'
     t.index ['course_id'], name: 'index_enrolments_on_course_id'
     t.index ['user_id'], name: 'index_enrolments_on_user_id'
   end
@@ -83,7 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 20_241_007_135_803) do
     t.integer 'course_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.integer 'position'
     t.index ['course_id'], name: 'index_lessons_on_course_id'
   end
 
@@ -100,6 +110,8 @@ ActiveRecord::Schema[7.1].define(version: 20_241_007_135_803) do
   add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'comments', 'courses'
   add_foreign_key 'comments', 'users'
+  add_foreign_key 'course_lessons', 'courses'
+  add_foreign_key 'course_lessons', 'lessons'
   add_foreign_key 'courses', 'users', column: 'author_id'
   add_foreign_key 'enrolments', 'courses'
   add_foreign_key 'enrolments', 'users'
