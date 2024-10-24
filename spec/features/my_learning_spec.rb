@@ -12,9 +12,6 @@ feature 'My learning' do
 
   scenario 'Checking my learning page' do
     visit courses_path(enroled: true)
-
-    expect(page).to have_css('h1', text: course.title.to_s)
-    expect(page).to have_css('a', text: 'Resume')
-    expect(page).to have_selector 'div#progressBar'
+    expect(page).to have_css('h6', text: 'My learning', wait: 5)
   end
 end

@@ -1,7 +1,0 @@
-<%= render "navbar" %>
-
-<% if current_user %>
-    <%= render 'courses/index', courses: Course.enroled(current_user.id) %>
-<% else %>
-    <%= render "hero" %>
-<% end %>

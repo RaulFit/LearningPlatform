@@ -28,7 +28,13 @@
         </p>
         <%= @course_lesson.lesson.content %>
         <%= link_to "My courses", courses_path(authored: true), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
-        <%= link_to "Next", course_lesson_path(@course, @course.course_lessons.find_by(position: @course_lesson.position + 2), next: true), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+        <% if current_user.enroled?(@course) %>
+          <%= link_to "Next", course_enrolment_path(@course, @course.enrolments.find_by(user_id: current_user.id), position: @course_lesson.position + 1),
+       data: {turbo_method: :put}, class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
+        <% else %>
+          <%= link_to "Next", course_lesson_path(@course,  @course.course_lessons.find_by(position: @course_lesson.position + 1).lesson),
+        class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg"  %>
+        <% end %>
       </div>
     </div>
   </div>

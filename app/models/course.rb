@@ -3,8 +3,8 @@ class Course < ApplicationRecord
   scope :available, ->(user_id) { where.not(id: enroled(user_id)) }
 
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
-  has_many :course_lessons
-  has_many :lessons, -> { order(:position) }, through: :course_lessons, dependent: :destroy
+  has_many :course_lessons, dependent: :destroy
+  has_many :lessons, -> { order(:position) }, through: :course_lessons
   has_many :comments, dependent: :destroy
   has_many :enrolments, dependent: :destroy
   has_one_attached :photo

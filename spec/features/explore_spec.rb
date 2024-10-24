@@ -11,8 +11,8 @@ feature 'Explore' do
 
   scenario 'Checking explore page' do
     visit courses_path(available: true)
+    expect(page).to have_css('h6', text: 'Explore', wait: 5)
     expect(page).to have_css('h1', text: course.title.to_s)
-    expect(page).to have_css('a', text: 'Read more...')
-    expect(page).to have_css('a', text: 'Enrol')
+    expect(page).to have_css('h6', text: course.difficulty.to_s)
   end
 end

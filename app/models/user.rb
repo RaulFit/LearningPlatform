@@ -9,4 +9,12 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, length: { minimum: 3 }
   validates :password, presence: true, length: { minimum: 3 }
   validates :password_confirmation, presence: true
+
+  def enroled?(course)
+    enrolments.pluck(:course_id).include?(course.id)
+  end
+
+  def get_enrolment(course)
+    enrolments.find_by(course_id: course.id)
+  end
 end

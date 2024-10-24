@@ -37,6 +37,7 @@ en:
   course_destroy_notice: "Course deleted successfully"
 
   enrolment_notice: "Successfully enroled to"
+  enrolment_destroy_notice: "Abandoned"
 
   lesson_notice: "Lesson created successfully"
   lesson_alert: "Lesson not created"
@@ -57,7 +58,7 @@ en:
 
   add_lesson: "Add lesson"
 
-  add_new_lesson: "Add a new lesson"
+  add_new_lesson: "Add a new lesson to "
 
   enrol: "Enrol"
 
@@ -116,3 +117,57 @@ en:
   create_account: "Create a new account"
 
   reorder_lessons: "Reorder lessons"
+
+  in_progress: "In progress!"
+
+  reorder_lessons_for: "Reorder lessons for"
+
+  already_have_acc: "Already have an account?"
+
+  easy: "Easy"
+
+  medium: "Medium"
+
+  hard: "Hard"
+
+  available: "Available"
+
+  search: "Search"
+
+  search_courses: "Search courses..."
+
+  remove: "Remove"
+
+  abandon: "Abandon"
+
+  save: "Save"
+
+  no_courses: "There’s no courses here"
+
+  change_filters: "Try changing your filters to"
+
+  filters: "Change filters"
+
+  see_courses: "see available courses"
+
+  activerecord:
+    models:
+      user: User
+      course: Course
+      lesson: Lesson
+      comment: Comment
+      enrolment: Enrol
+    attributes:
+      user:
+        username: "Username"
+        email: "email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+      course:
+        title: "Title"
+        description: "Description"
+      lesson:
+        title: "Title"
+        content: "Content"
+      comment:
+        body: "Content"

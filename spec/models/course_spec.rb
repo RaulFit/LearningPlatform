@@ -9,7 +9,8 @@ RSpec.describe Course, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:lessons).dependent(:destroy) }
+    it { is_expected.to have_many(:course_lessons).dependent(:destroy) }
+    it { is_expected.to have_many(:lessons).through(:course_lessons) }
     it { is_expected.to have_many(:comments).dependent(:destroy) }
     it { is_expected.to have_many(:enrolments).dependent(:destroy) }
     it { is_expected.to belong_to(:author) }

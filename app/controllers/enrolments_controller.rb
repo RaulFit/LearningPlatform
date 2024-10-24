@@ -13,15 +13,17 @@ class EnrolmentsController < ApplicationController
 
   def update
     @position = params[:position].to_i
-    @enrolment.update_progress(@position)
+    @enrolment.update_progress(@course, @position)
 
-    redirect_to courses_path(enroled: true) and return if @enrolment.progress == @course.course_lessons.size
+    redirect_to courses_path(enroled: true) and return if @enrolment.progress == 100
 
     redirect_to course_lesson_path(@course, @course.course_lessons.find_by(position: @position).lesson)
   end
 
   def destroy
     @enrolment.destroy
+    flash[:notice] = "#{t(:enrolment_destroy_notice)} #{@course.title}"
+    redirect_to courses_path(enroled: true)
   end
 
   def enrolment_params

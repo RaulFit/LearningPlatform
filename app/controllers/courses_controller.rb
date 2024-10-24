@@ -4,13 +4,13 @@ class CoursesController < ApplicationController
 
   def index
     if params[:available]
-      @available_courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"]).available(current_user.id)
+      @available_courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"]).where(public: true)
       @available = true
     elsif params[:enroled]
-      @enroled_courses = @courses.enroled(current_user.id)
+      @enroled_courses = @courses.enroled(current_user.id).where(['title LIKE ?', "%#{params[:search]}%"])
       @enroled = true
     elsif params[:authored]
-      @authored_courses = current_user.authored_courses
+      @authored_courses = current_user.authored_courses.where(['title LIKE ?', "%#{params[:search]}%"])
       @authored = true
     end
   end
@@ -50,6 +50,6 @@ class CoursesController < ApplicationController
   protected
 
   def course_params
-    params.require(:course).permit(:title, :description, :author_id, :photo)
+    params.require(:course).permit(:title, :photo, :description, :difficulty, :public, :author_id)
   end
 end

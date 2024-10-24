@@ -1,6 +1,5 @@
-   
 <div class="w-full flex items-center flex-wrap justify-center gap-10 mt-20">
-  <div class="grid gap-4 w-60">
+  <div class="grid gap-4 w-60 mr-20">
     <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" width="350" height="350" viewBox="0 0 154 161" fill="none">
       <path d="M0.0616455 84.4268C0.0616455 42.0213 34.435 7.83765 76.6507 7.83765C118.803 7.83765 153.224 42.0055 153.224 84.4268C153.224 102.42 147.026 118.974 136.622 132.034C122.282 150.138 100.367 161 76.6507 161C52.7759 161 30.9882 150.059 16.6633 132.034C6.25961 118.974 0.0616455 102.42 0.0616455 84.4268Z" fill="#EEF2FF" />
       <path d="M96.8189 0.632498L96.8189 0.632384L96.8083 0.630954C96.2034 0.549581 95.5931 0.5 94.9787 0.5H29.338C22.7112 0.5 17.3394 5.84455 17.3394 12.4473V142.715C17.3394 149.318 22.7112 154.662 29.338 154.662H123.948C130.591 154.662 135.946 149.317 135.946 142.715V38.9309C135.946 38.0244 135.847 37.1334 135.648 36.2586L135.648 36.2584C135.117 33.9309 133.874 31.7686 132.066 30.1333C132.066 30.1331 132.065 30.1329 132.065 30.1327L103.068 3.65203C103.068 3.6519 103.067 3.65177 103.067 3.65164C101.311 2.03526 99.1396 0.995552 96.8189 0.632498Z" fill="white" stroke="#E5E7EB" />
@@ -19,12 +18,20 @@
       <circle cx="67.0702" cy="31.0854" r="1.36752" fill="#4F46E5" />
     </svg>
     <div>
-      <h2 class="text-center text-black text-xl font-semibold leading-loose pb-2">There’s no courses here</h2>
-      <p class="text-center text-black text-base font-normal leading-relaxed pb-4">Try changing your filters to <br />
-        see available courses </p>
+      <h2 class="text-center text-black text-xl font-semibold leading-loose pb-2"><%= "#{t :no_courses}"%></h2>
+      <p class="text-center text-black text-base font-normal leading-relaxed pb-4"><%= "#{t :change_filters}"%> <br />
+        <%= "#{t :see_courses}"%> </p>
       <div class="flex gap-3">
-        <%= link_to 'Change filters', courses_path(available: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700 transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
-        
+        <% if @available %>
+          <%= link_to "#{t :filters}", courses_path(available: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
+         transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
+        <% elsif @authored %>
+          <%= link_to "#{t :filters}", courses_path(authored: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
+         transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
+        <% elsif @enroled %>
+          <%= link_to "#{t :filters}", courses_path(enroled: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
+         transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
+        <% end %>
       </div>
     </div>
   </div>

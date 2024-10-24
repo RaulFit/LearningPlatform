@@ -10,10 +10,8 @@ feature 'Courses page' do
 
   scenario 'Checking my courses page' do
     visit courses_path(authored: true)
-
+    expect(page).to have_css('h6', text: 'My courses', wait: 5)
     expect(page).to have_css('h1', text: course.title.to_s)
-    expect(page).to have_css('a', text: 'Read more...')
-    expect(page).to have_css('a', text: 'Add lesson')
-    expect(page).to have_css('a', text: 'Edit')
+    expect(page).to have_css('h6', text: course.difficulty.to_s)
   end
 end

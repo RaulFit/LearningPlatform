@@ -37,6 +37,7 @@ ro:
   course_destroy_notice: "Cursul a fost sters cu succes"
 
   enrolment_notice: "Te-ai inscris cu succes la"
+  enrolment_destroy_notice: "Ai abandonat"
 
   lesson_notice: "Lectia a fost creata cu succes"
   lesson_alert: "Lectia nu a fost creata"
@@ -57,7 +58,7 @@ ro:
 
   add_lesson: "Adauga lectie"
 
-  add_new_lesson: "Adauga o lectie noua"
+  add_new_lesson: "Adauga o lectie noua pentru "
 
   enrol: "Inscrie-te"
 
@@ -116,6 +117,38 @@ ro:
   create_account: "Creeaza un cont nou"
 
   reorder_lessons: "Rearanjeaza lectiile"
+
+  in_progress: "In progres!"
+
+  already_have_acc: "Ai deja un cont?"
+
+  reorder_lessons_for: "Rearanjeaza lectiile pentru"
+
+  available: "Valabil"
+
+  easy: "Usor"
+
+  medium: "Mediu"
+
+  hard: "Greu"
+
+  search: "Cauta"
+
+  search_courses: "Cauta cursuri..."
+
+  remove: "Sterge"
+
+  abandon: "Abandoneaza"
+
+  save: "Salveaza"
+
+  no_courses: "Nu am gasit niciun curs"
+
+  change_filters: "Incearca sa schimbi filtrele pentru"
+
+  see_courses: "a vedea cursuri valabile"
+
+  filters: "Schimba filtrele"
 
   activerecord:
     models:

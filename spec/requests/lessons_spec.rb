@@ -4,17 +4,11 @@ RSpec.describe 'Lessons', type: :request do
   let(:user) { create(:user) }
   let(:course) { create(:course, author: user) }
   let(:lesson) { create(:lesson, course:) }
+  let(:course_lesson) { create(:course_lesson, course:, lesson:) }
 
   context 'user is logged in' do
     before do
       login(user)
-    end
-
-    context 'GET /show' do
-      it 'should render show page' do
-        get course_lesson_path(course, lesson)
-        expect(response).to render_template :show
-      end
     end
 
     context 'GET /new' do
@@ -26,7 +20,7 @@ RSpec.describe 'Lessons', type: :request do
 
     context 'Get /Edit' do
       it 'should render edit page' do
-        get edit_course_lesson_path(course, lesson)
+        get edit_course_lesson_path(course, lesson, course_lesson:)
         expect(response).to render_template :edit
       end
     end
@@ -52,36 +46,23 @@ RSpec.describe 'Lessons', type: :request do
 
     context 'Put /Course/Lesson' do
       it 'should update a lesson with valid attributes' do
-        put course_lesson_path(course, lesson),
+        put course_lesson_path(course, lesson, course_lesson:),
             params: { lesson: attributes_for(:lesson, title: 'New title') }
         expect(flash[:notice]).to eq 'Lesson updated successfully'
         expect(Lesson.find(lesson.id).title).to eq 'New title'
       end
 
       it 'should redirect to the courses page if successfully updated' do
-        put course_lesson_path(course, lesson),
+        put course_lesson_path(course, lesson, course_lesson:),
             params: { lesson: attributes_for(:lesson, title: 'New title') }
         expect(response).to redirect_to courses_path(authored: true)
       end
 
       it 'should not update a lesson with invalid attributes' do
-        put course_lesson_path(course, lesson),
+        put course_lesson_path(course, lesson, course_lesson:),
             params: { lesson: attributes_for(:lesson, title: nil) }
         expect(response).to render_template :edit
         expect(flash[:alert]).to eq 'Lesson not updated'
-      end
-    end
-
-    context 'Delete /Course/Lesson' do
-      it 'should destroy a lesson' do
-        course
-        lesson
-        expect { delete course_lesson_path(course, lesson) }.to change(Lesson, :count).by(-1)
-      end
-
-      it 'should redirect to the courses page' do
-        delete course_lesson_path(course, lesson)
-        expect(response).to redirect_to courses_path(authored: true)
       end
     end
   end

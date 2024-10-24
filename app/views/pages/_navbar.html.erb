@@ -5,9 +5,9 @@
         <a href="#_" class="inline-flex mr-5 items-center mb-5 font-medium text-gray-900 lg:w-auto lg:items-center lg:justify-center md:mb-0">
           <span class="mx-auto text-xl font-black leading-none text-gray-900 select-none"><%= t :learning_platform %></span>
         </a>
-        <%= link_to "#{t :home}", courses_path(enroled: true), class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
         <% if current_user %>
-         <%= link_to "#{t :explore}", courses_path(available: true), class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
+          <%= link_to "#{t :explore}", courses_path(available: true), class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
+          <%= link_to "#{t :my_learning}", courses_path(enroled: true), class:"rounded-md px-3 py-2 text-black hover:bg-gray-800 hover:text-white" %>
           <div class="relative inline-block text-left">
             <div class="group py-1">
               <button type="button" id="dropdown"
@@ -20,7 +20,6 @@
               <div
                             class="absolute left-0 w-40 mt-1 origin-top-left bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300">
                 <div class="py-1">
-                  <%= link_to "#{t :my_learning}", courses_path(enroled: true), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                   <%= link_to "#{t :my_courses}", courses_path(authored: true), class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                   <%= link_to "#{t :add_course}", new_course_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                 </div>
@@ -49,6 +48,7 @@
             </div>
           </div>
         <% else %>
+        <%= link_to "#{t :home}", root_path, class:"rounded-md pr-4 py-2 text-black hover:bg-gray-800 hover:text-white" %>
           <%= link_to "#{t :log_in}", new_user_session_path, class:"text-white bg-gray-600 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
                  text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
           <%= link_to "#{t :sign_up}", new_user_path, class:"text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
@@ -64,9 +64,9 @@
         <%= link_to root_path(locale: :en) do %>
           <svg class="inline-flex w-8 h-8" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
             <circle cx="256" cy="256" fill="#f0f0f0" r="256"/><g fill="#d80027"><path d="m244.87 256h267.13c0-23.106-3.08-45.49-8.819-66.783h-258.311z"/>
-            <path d="m244.87 122.435h229.556c-15.671-25.572-35.708-48.175-59.07-66.783h-170.486z"/>
-            <path d="m256 512c60.249 0 115.626-20.824 159.356-55.652h-318.712c43.73 34.828 99.107 55.652 159.356 55.652z"/>
-            <path d="m37.574 389.565h436.852c12.581-20.529 22.338-42.969 28.755-66.783h-494.362c6.417 23.814 16.174 46.254 28.755 66.783z"/></g>
+              <path d="m244.87 122.435h229.556c-15.671-25.572-35.708-48.175-59.07-66.783h-170.486z"/>
+              <path d="m256 512c60.249 0 115.626-20.824 159.356-55.652h-318.712c43.73 34.828 99.107 55.652 159.356 55.652z"/>
+              <path d="m37.574 389.565h436.852c12.581-20.529 22.338-42.969 28.755-66.783h-494.362c6.417 23.814 16.174 46.254 28.755 66.783z"/></g>
             <path d="m118.584 39.978h23.329l-21.7 15.765 8.289 25.509-21.699-15.765-21.699 15.765 7.16-22.037c-19.106 15.915-35.852 34.561-49.652 55.337h7.475l-13.813 10.035c-2.152 3.59-4.216 7.237-6.194 10.938l6.596 20.301-12.306-8.941c-3.059 6.481-5.857 13.108-8.372 19.873l7.267 22.368h26.822l-21.7 15.765 8.289 25.509-21.699-15.765-12.998 9.444c-1.301 10.458-1.979 21.11-1.979 31.921h256c0-141.384 0-158.052 0-256-50.572 0-97.715 14.67-137.416 39.978zm9.918 190.422-21.699-15.765-21.699 15.765 8.289-25.509-21.7-15.765h26.822l8.288-25.509 8.288 25.509h26.822l-21.7 15.765zm-8.289-100.083 8.289 25.509-21.699-15.765-21.699 15.765 8.289-25.509-21.7-15.765h26.822l8.288-25.509 8.288 25.509h26.822zm100.115 100.083-21.699-15.765-21.699 15.765 8.289-25.509-21.7-15.765h26.822l8.288-25.509 8.288 25.509h26.822l-21.7 15.765zm-8.289-100.083 8.289 25.509-21.699-15.765-21.699 15.765 8.289-25.509-21.7-15.765h26.822l8.288-25.509 8.288 25.509h26.822zm0-74.574 8.289 25.509-21.699-15.765-21.699 15.765 8.289-25.509-21.7-15.765h26.822l8.288-25.509 8.288 25.509h26.822z" fill="#0052b4"/>
             <g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg>
         <% end %>

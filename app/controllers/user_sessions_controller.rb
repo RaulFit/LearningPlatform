@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     @user = User.find_by(username: login_params[:username])
     if @user&.authenticate(login_params[:password])
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to root_path(enroled: true)
     else
       flash[:alert] = t(:login_alert)
       redirect_to new_user_session_path

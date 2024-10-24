@@ -1,3 +1,5 @@
+<%= render 'pages/navbar' %>
+
 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div class="w-full bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -27,16 +29,26 @@
                 </div>
 
                 <div class="mb-6">
+                  <%= f.label :photo, class:"block text-sm mb-2 font-medium text-gray-900" %>
+                  <%= f.file_field :photo, class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+                </div>
+
+                <div class="mb-6">
                   <%= f.label :description, class:"block text-sm mb-2 font-medium text-gray-900" %>
                   <%= f.text_area :description, class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
                 </div>
 
-                <%= f.text_field :author_id, type: "hidden", value: current_user&.id %>
+                <div class="mb-6">
+                  <%= f.label :difficulty, class:"block text-sm mb-2 font-medium text-gray-900" %>
+                  <%= f.select :difficulty, ["Easy", "Medium", "Hard"], class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+                </div>
 
                 <div class="mb-6">
-                  <%= f.label :photo, class:"block text-sm mb-2 font-medium text-gray-900" %>
-                  <%= f.file_field :photo, class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+                  <%= f.label :public, class:"block text-sm mb-2 font-medium text-gray-900" %>
+                  <%= f.select :public, [true, false], class:"bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
                 </div>
+
+                <%= f.text_field :author_id, type: "hidden", value: current_user&.id %>
                 
                 <% if f.object.new_record? %>
                 <p class="mb-6">
