@@ -8,7 +8,7 @@ class EnrolmentsController < ApplicationController
     return unless @enrolment.save
 
     flash[:notice] = "#{t(:enrolment_notice)} #{@course.title}"
-    redirect_to courses_path(enroled: true)
+    redirect_to course_path(@course)
   end
 
   def update

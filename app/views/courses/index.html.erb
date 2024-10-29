@@ -1,10 +1,10 @@
 <%= render 'pages/navbar' %>
 <div class="p-5 lg:px-20 -mt-71 bg-white w-5/6 mx-auto">
   <% if @available %>
-    <%= render 'courses', courses: @available_courses, available: true %>
+    <%= render 'courses', courses: @available_courses %>
   <% elsif @authored %>
-    <%= render 'courses', courses: @authored_courses, authored: true %>
+    <%= render 'courses', courses: @authored_courses %>
   <% elsif @enroled %>
-    <%= render 'courses', courses: @enroled_courses, enroled: true %>
+    <%= render 'courses', courses: @enroled_courses %>
   <% end %>
 </div>

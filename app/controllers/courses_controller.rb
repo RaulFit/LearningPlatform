@@ -15,9 +15,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  def show
-    @course_lesson = @course.course_lessons.order(:position).first
-  end
+  def show; end
 
   def create
     if @course.save

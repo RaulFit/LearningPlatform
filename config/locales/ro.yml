@@ -58,6 +58,8 @@ ro:
 
   add_lesson: "Adauga lectie"
 
+  edit_lesson: "Editeaza lectie"
+
   add_new_lesson: "Adauga o lectie noua pentru "
 
   enrol: "Inscrie-te"
@@ -149,6 +151,10 @@ ro:
   see_courses: "a vedea cursuri valabile"
 
   filters: "Schimba filtrele"
+
+  up: "Sus"
+
+  down: "Jos"
 
   activerecord:
     models:

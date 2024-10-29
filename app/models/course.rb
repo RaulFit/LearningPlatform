@@ -5,12 +5,11 @@ class Course < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
   has_many :course_lessons, dependent: :destroy
   has_many :lessons, -> { order(:position) }, through: :course_lessons
-  has_many :comments, dependent: :destroy
   has_many :enrolments, dependent: :destroy
   has_one_attached :photo
-
+  has_rich_text :description
   validates :title, presence: true, uniqueness: true, length: { minimum: 3 }
-  validates :description, presence: true, length: { minimum: 10 }
+  validates :description, presence: true
 
   def swap_lessons(first_lesson, second_lesson)
     first_pos = first_lesson.position

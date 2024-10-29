@@ -1,16 +1,14 @@
- <% if courses.blank? %>
-  <%= render 'pages/empty', enroled: true %>
+<% if @available %>
+  <h6 class="text-center text-3xl font-bold my-5"><%= t :explore %></h6>
+<% elsif @authored %>
+  <h6 class="text-center text-3xl font-bold my-5"><%= t :my_courses %></h6>
+<% elsif @enroled %>
+  <h6 class="text-center text-3xl font-bold my-5"><%= t :my_learning %></h6>
+<% end %>
+<% if courses.blank? %>
+  <%= render 'pages/empty' %>
 <% else %>
-  <% if @available %>
-    <h6 class="text-center text-3xl font-bold my-5"><%= t :explore %></h6>
-    <%= render 'search_bar', available: true %>
-  <% elsif @authored %>
-    <h6 class="text-center text-3xl font-bold my-5"><%= t :my_courses %></h6>
-    <%= render 'search_bar', authored: true %>
-  <% elsif @enroled %>
-    <h6 class="text-center text-3xl font-bold my-5"><%= t :my_learning %></h6>
-    <%= render 'search_bar', enroled: true %>
-  <% end %>
+  <%= render 'search_bar' %>
 <% end %>
 <div class="flex flex-wrap justify-start gap-x-5 gap-y-5 mt-5">
   <% courses.each do |course| %>
@@ -18,17 +16,18 @@
       <h1 class="font-bold text-2xl mb-2 text-center"><%= course.title %></h1>
       <%= render 'difficulty', difficulty: course.difficulty %>
       <% if course.photo.representable? %>
-        <div class="mt-4">
-          <%= image_tag course.photo.representation(resize_to_limit: [800, 800]), class: "w-full h-48 object-cover rounded-md" %>
-        </div>
+        <%= link_to course_path(course) do %>
+          <div class="mt-4">
+            <%= image_tag course.photo.representation(resize_to_limit: [800, 800]), class: "w-full h-48 object-cover rounded-md" %>
+          </div>
+        <% end %>
       <% end %>
-      <% if @available %>
-        <%= render 'dropdown', course: course %>
-      <% elsif @authored %>
-        <%= render 'dropdown', course: course %>
-      <% elsif @enroled %>
-        <%= render 'dropdown', course: course %>
-      <% end %>
+      <div class="flex items-center mt-5">
+        <%= render 'progressbar', course: course %>
+        <% if @authored %>
+          <%= link_to "#{t :edit}", edit_course_path(course), class:"bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 border border-blue-500 rounded ml-5" %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

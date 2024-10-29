@@ -1,19 +1,77 @@
 <%= render 'pages/navbar' %>
-
-<div class="max-w-3xl mx-auto text-center mt-5 mb-10">
-  <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-2 border-t-4 border-b-4 border-indigo-400 py-4">
-    <%= "#{t :reorder_lessons_for }"%> <%= @course.title %>
-  </h1>
-</div>
-<% @course.lessons.each do |lesson| %>
-      <div class="bg-gray-100 p-5 mt-2 rounded-lg">
-        <h1 class="font-bold text-2xl mb-2"><%= lesson.title %></h1>
-        <% course_lesson = @course.get_course_lesson(lesson) %>
-        <%= link_to 'Up', course_course_lesson_path(@course, course_lesson, position: course_lesson.position, up: true), data: {turbo_method: :put} %>
-        <%= link_to 'Down', course_course_lesson_path(@course, course_lesson, position: course_lesson.position, down: true), data: {turbo_method: :put} %>
+<div class="flex h-screen bg-gray-100">
+  <%= render 'courses/sidebar' %>
+  <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+  </div>
+  <body class="antialiased font-sans bg-gray-200">
+    <div class="container mx-auto px-4 sm:px-8">
+      <div class="py-8">
+        <div>
+          <h2 class="text-2xl font-semibold leading-tight"><%="#{@course.title}#{" lessons"}"%></h2>
+        </div>
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table class="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Lesson
+                  </th>
+                  <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Created at
+                  </th>
+                  <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Comments
+                  </th>
+                  <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @course.lessons.each do |lesson| %>
+                  <tr>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div class="flex items-center">
+                        <% if lesson.photo.representable? %>
+                          <%= image_tag lesson.photo.representation(resize_to_limit: [100, 100]), class: "w-50 h-26 object-cover rounded-md mr-3" %>
+                        <% end %>
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          <%= lesson.title %>
+                        </p>
+                      </div>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        <%= lesson.created_at %>
+                      </p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">
+                        0
+                      </p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <% course_lesson = @course.get_course_lesson(lesson) %>
+                      <%= link_to "#{t :up}", course_course_lesson_path(@course, course_lesson, position: course_lesson.position, up: true), data: {turbo_method: :put},
+                       class:"bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 border rounded" %>
+                      <%= link_to "#{t :down}", course_course_lesson_path(@course, course_lesson, position: course_lesson.position, down: true), data: {turbo_method: :put},
+                       class:"bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 border rounded" %>
+                      <%= link_to "#{t :edit}", edit_course_lesson_path(@course, lesson), class:"bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 border border-blue-500 rounded" %>
+                      <%= link_to "#{t :remove}", course_course_lesson_path(@course, course_lesson), data: {turbo_method: :delete},
+                       class:"bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-<% end %>
-
-<div class="text-center mt-10">
-  <%= link_to "#{t :save}", courses_path(authored: true), class: "inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
-</div>
+    </div>
+  </div>
+</body>

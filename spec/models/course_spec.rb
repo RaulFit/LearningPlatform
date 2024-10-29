@@ -5,7 +5,6 @@ RSpec.describe Course, type: :model do
 
   describe 'columns' do
     it { is_expected.to have_db_column(:title).of_type(:string) }
-    it { is_expected.to have_db_column(:description).of_type(:text) }
   end
 
   describe 'associations' do
@@ -20,6 +19,5 @@ RSpec.describe Course, type: :model do
     it { is_expected.to validate_presence_of :title }
     it { is_expected.to validate_presence_of :description }
     it { is_expected.to validate_length_of(:title).is_at_least(3) }
-    it { is_expected.to validate_length_of(:description).is_at_least(10) }
   end
 end

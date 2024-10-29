@@ -58,6 +58,8 @@ en:
 
   add_lesson: "Add lesson"
 
+  edit_lesson: "Edit lesson"
+
   add_new_lesson: "Add a new lesson to "
 
   enrol: "Enrol"
@@ -149,6 +151,10 @@ en:
   filters: "Change filters"
 
   see_courses: "see available courses"
+
+  up: "Up"
+
+  down: "Down"
 
   activerecord:
     models:
