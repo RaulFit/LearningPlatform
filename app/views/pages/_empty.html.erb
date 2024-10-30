@@ -22,16 +22,8 @@
       <p class="text-center text-black text-base font-normal leading-relaxed pb-4"><%= "#{t :change_filters}"%> <br />
         <%= "#{t :see_courses}"%> </p>
       <div class="flex gap-3">
-        <% if @available %>
-          <%= link_to "#{t :filters}", courses_path(available: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
+        <%= link_to "#{t :create_course}", new_course_path(available: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
          transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
-        <% elsif @authored %>
-          <%= link_to "#{t :filters}", courses_path(authored: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
-         transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
-        <% elsif @enroled %>
-          <%= link_to "#{t :filters}", courses_path(enroled: true), class:"text-center w-full px-3 py-2 bg-indigo-600 hover:bg-indigo-700
-         transition-all duration-500 rounded-full text-white text-xs font-semibold leading-4" %>
-        <% end %>
       </div>
     </div>
   </div>

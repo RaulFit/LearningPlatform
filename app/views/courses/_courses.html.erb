@@ -22,12 +22,7 @@
           </div>
         <% end %>
       <% end %>
-      <div class="flex items-center mt-5">
-        <%= render 'progressbar', course: course %>
-        <% if @authored %>
-          <%= link_to "#{t :edit}", edit_course_path(course), class:"bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 border border-blue-500 rounded ml-5" %>
-        <% end %>
-      </div>
+      <%= render 'progressbar', course: course%>
     </div>
   <% end %>
 </div>

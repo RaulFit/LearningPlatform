@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
       @course.course_lessons.create(course_id: @course.id, lesson_id: @lesson.id,
                                     position: @course.course_lessons.count)
       flash[:notice] = t(:lesson_notice)
-      redirect_to courses_path(authored: true)
+      redirect_to course_lessons_path(@course)
     else
       flash[:alert] = t(:lesson_alert)
       render :new, status: :unprocessable_entity
@@ -29,7 +29,7 @@ class LessonsController < ApplicationController
   def update
     if @lesson.update(lesson_params)
       flash[:notice] = t(:lesson_update_notice)
-      redirect_to courses_path(authored: true)
+      redirect_to course_lessons_path(@course)
     else
       flash[:alert] = t(:lesson_update_alert)
       render :edit, status: :unprocessable_entity

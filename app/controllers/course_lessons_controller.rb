@@ -1,6 +1,6 @@
 class CourseLessonsController < ApplicationController
   load_and_authorize_resource :course
-  load_and_authorize_resource :course_lessons, through: :course
+  load_and_authorize_resource :course_lesson, through: :course
 
   def update
     ActiveRecord::Base.transaction do
@@ -15,6 +15,12 @@ class CourseLessonsController < ApplicationController
       end
     end
 
+    redirect_to course_lessons_path(@course)
+  end
+
+  def destroy
+    @course_lesson.destroy
+    flash[:notice] = t(:lesson_destroy_notice)
     redirect_to course_lessons_path(@course)
   end
 end

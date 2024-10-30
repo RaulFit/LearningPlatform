@@ -1,10 +1,10 @@
 <%= render 'pages/navbar' %>
-<div class="flex h-screen bg-gray-100">
+<div class="flex">
   <%= render 'courses/sidebar' %>
   <div class="flex-1 px-8 py-8">
-    <div class="bg-white border-4 rounded-lg shadow relative m-10 w-4/5 mx-auto mt-20">
+    <div class="bg-white border-4 rounded-lg shadow">
       <%= form_for [ @course, @lesson ] do |f| %>
-        <div class="flex items-start justify-between p-5 border-b rounded-t">
+        <div class="flex items-start justify-between p-5 border-b rounded-t sticky top-0 bg-gray-100">
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"><%= "#{t :add_new_lesson}#{@course.title}" %></h1>
         </div>
         <% if @lesson.errors.any? %>

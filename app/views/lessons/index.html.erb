@@ -1,9 +1,9 @@
 <%= render 'pages/navbar' %>
-<div class="flex h-screen bg-gray-100">
+<div class="flex">
   <%= render 'courses/sidebar' %>
   <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
   </div>
-  <body class="antialiased font-sans bg-gray-200">
+  <body class="antialiased font-sans ">
     <div class="container mx-auto px-4 sm:px-8">
       <div class="py-8">
         <div>
@@ -52,18 +52,31 @@
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p class="text-gray-900 whitespace-no-wrap">
-                        0
+                        <%= lesson.comments.count %>
                       </p>
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <% course_lesson = @course.get_course_lesson(lesson) %>
-                      <%= link_to "#{t :up}", course_course_lesson_path(@course, course_lesson, position: course_lesson.position, up: true), data: {turbo_method: :put},
-                       class:"bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 border rounded" %>
-                      <%= link_to "#{t :down}", course_course_lesson_path(@course, course_lesson, position: course_lesson.position, down: true), data: {turbo_method: :put},
-                       class:"bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 border rounded" %>
-                      <%= link_to "#{t :edit}", edit_course_lesson_path(@course, lesson), class:"bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 border border-blue-500 rounded" %>
-                      <%= link_to "#{t :remove}", course_course_lesson_path(@course, course_lesson), data: {turbo_method: :delete},
-                       class:"bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded" %>
+                      <div class="inline-flex">
+                      <div class="flex flex-col">
+                        <% course_lesson = @course.get_course_lesson(lesson) %>
+                        <%= link_to course_course_lesson_path(@course, course_lesson, position: course_lesson.position, up: true), data: {turbo_method: :put} do %>
+                          <svg fill="#000000" height="26px" width="32px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                              <path id="XMLID_224_" d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394 l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393 C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"></path> </g></svg>
+                        <% end %>
+                        <%= link_to course_course_lesson_path(@course, course_lesson, position: course_lesson.position, down: true), data: {turbo_method: :put} do %>
+                          <svg fill="#000000" height="26px" width="32px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_224_" d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394 l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393 C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"></path> </g></svg>
+                        <% end %>
+                      </div>
+                      <div class="flex flex-inline my-auto">
+                        <%= link_to edit_course_lesson_path(@course, lesson), class: "ml-4" do %>
+                          <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z" fill="indigo"></path> </g></svg>
+                        <% end %>
+                        <%= link_to course_course_lesson_path(@course, course_lesson), data: {turbo_method: :delete}, class: "ml-4" do %>
+                          <svg width="32px" height="32px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>delete [#1487]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="red"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#1487]"> </path> </g> </g> </g> </g></svg>
+                        <% end %>
+                      </div>
+                      </div>
                     </td>
                   </tr>
                 <% end %>

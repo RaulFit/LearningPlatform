@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def get_enrolment(course)
     enrolments.find_by(course_id: course.id)
   end
+
+  def author?(course)
+    id == course.author_id
+  end
 end

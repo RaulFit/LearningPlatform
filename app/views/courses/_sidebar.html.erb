@@ -1,14 +1,29 @@
-<aside class="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 sticky top-0">
-    <%= link_to "My courses", courses_path(authored: true), class:"inline-flex items-center justify-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
-    <% if @course.photo.representable? %>
-      <div class="mt-4">
-        <%= image_tag @course.photo.representation(resize_to_limit: [300, 400]), class: "w-full h-32 object-fill rounded-md" %>
-      </div>
-    <% end %>
-    <div class="flex flex-col justify-between flex-1 mt-6">
-      <nav class="-mx-3 space-y-6 ">
-        <div class="space-y-3 ">
-          <label class="px-3 text-m text-gray-500 dark:text-gray-400"><%= @course.title %></label>
+<aside class="sticky top-0 h-screen flex flex-col w-64 px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+  <% if @course.photo.representable? %>
+    <div class="mt-4">
+      <%= image_tag @course.photo.representation(resize_to_limit: [300, 400]), class: "w-full h-32 object-fill rounded-md" %>
+    </div>
+  <% end %>
+  <div class="flex flex-col justify-between flex-1 mt-6">
+    <nav class="-mx-3 space-y-6 ">
+      <div class="space-y-3 ">
+        <label class="px-3 text-m text-gray-500 dark:text-gray-400"><%= @course.title %></label>
+        <% if current_user.enroled?(@course) %>
+          <%= link_to  course_enrolment_path(@course, current_user.get_enrolment(@course)), data: {turbo_method: :delete}, class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.75h6.5a2 2 0 012 2v12.5a2 2 0 01-2-2h-6.5a2 2 0 00-2 2V6.75a2 2 0 012-2zm10 0h6.5a2 2 0 012 2v12.5a2 2 0 00-2-2h-6.5a2 2 0 012-2V6.75a2 2 0 00-2-2z" />
+            </svg>
+            <span class="mx-2 text-sm font-medium">Abandon</span>
+          <% end %>
+        <% else %>
+          <%= link_to course_enrolments_path(@course, enrolment: {user_id: current_user.id, course_id: @course.id, progress: 0}), data: {turbo_method: :post}, class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.75h6.5a2 2 0 012 2v12.5a2 2 0 01-2-2h-6.5a2 2 0 00-2 2V6.75a2 2 0 012-2zm10 0h6.5a2 2 0 012 2v12.5a2 2 0 00-2-2h-6.5a2 2 0 012-2V6.75a2 2 0 00-2-2z" />
+            </svg>
+            <span class="mx-2 text-sm font-medium"><%= t :enrol %></span>
+          <% end %>
+        <% end %>
+        <% if current_user.author?(@course) %>
           <%= link_to edit_course_path(@course), class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.5l4 4-12 12H4v-4l12-12zm0 0l-4 4m4-4L21 9" />
@@ -21,16 +36,27 @@
             </svg>
             <span class="mx-2 text-sm font-medium">Lessons</span>
           <% end %>
-        </div>
-        <div class="space-y-3 ">
-          <label class="px-3 text-m text-gray-500 dark:text-gray-400">Content</label>
           <%= link_to new_course_lesson_path(@course), class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
             </svg>
             <span class="mx-2 text-sm font-medium">Add lesson</span>
           <% end %>
-        </div>
-      </nav>
-    </div>
-  </aside>
+        <% end %>
+      </div>
+      <div class="space-y-3 ">
+        <label class="px-3 text-m text-gray-500 dark:text-gray-400">Lessons</label>
+        <% @course.lessons.each do |lesson| %>
+          <% if lesson.persisted? %>
+            <%= link_to course_lesson_path(@course, lesson), class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+              <span class="mx-2 text-sm font-medium"><%= lesson.title %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+</aside>
