@@ -36,8 +36,8 @@ ro:
   course_alert_notice: "Cursul nu a fost actualizat"
   course_destroy_notice: "Cursul a fost sters cu succes"
 
-  enrolment_notice: "Te-ai inscris cu succes la"
-  enrolment_destroy_notice: "Ai abandonat"
+  enrolment_notice: "Te-ai inscris cu succes la %{course_title}"
+  enrolment_destroy_notice: "Ai abandonat %{course_title}"
 
   lesson_notice: "Lectia a fost creata cu succes"
   lesson_alert: "Lectia nu a fost creata"

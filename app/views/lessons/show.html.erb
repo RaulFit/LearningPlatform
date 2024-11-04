@@ -1,10 +1,10 @@
 <%= render 'pages/navbar' %>
 <div class="flex">
-  <%= render 'courses/sidebar' %>
-  <div class="flex-1 px-8 py-8">
+  <%= render 'timeline', lesson: @lesson %>
+  <div class="flex-3 px-8 py-8">
     <div class="flex justify-center items-center min-h-screen shadow-lg">
       <div class="content-center px-4 py-8 bg-white rounded-lg shadow border-4">
-        <%= @course_lesson.lesson.content %>
+        <%= @lesson.content %>
         <div class="mt-8 flex justify-center">
           <% if @course_lesson.position == @course.lessons.size - 1 %>
             <% if @course.lessons.size == 1 %>

@@ -36,8 +36,8 @@ en:
   course_alert_notice: "Course not updated"
   course_destroy_notice: "Course deleted successfully"
 
-  enrolment_notice: "Successfully enroled to"
-  enrolment_destroy_notice: "Abandoned"
+  enrolment_notice: "Successfully enroled to %{course_title}"
+  enrolment_destroy_notice: "Abandoned %{course_title}"
 
   lesson_notice: "Lesson created successfully"
   lesson_alert: "Lesson not created"

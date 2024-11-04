@@ -1,8 +1,8 @@
-<% if @available %>
+<% if params[:available] %>
   <h6 class="text-center text-3xl font-bold my-5"><%= t :explore %></h6>
-<% elsif @authored %>
+<% elsif params[:authored] %>
   <h6 class="text-center text-3xl font-bold my-5"><%= t :my_courses %></h6>
-<% elsif @enroled %>
+<% elsif params[:enroled] %>
   <h6 class="text-center text-3xl font-bold my-5"><%= t :my_learning %></h6>
 <% end %>
 <% if courses.blank? %>
@@ -24,5 +24,13 @@
       <% end %>
       <%= render 'progressbar', course: course%>
     </div>
+  <% end %>
+  <% if params[:authored] && !courses.blank? %>
+    <%= link_to new_course_path, class: "bg-white border-2 border-dashed border-gray-300 flex items-center justify-center p-5 rounded-lg text-gray-400 hover:text-indigo-500 hover:border-indigo-500 transition duration-150 ease-in-out", style: "flex-basis: calc(33.3333% - 20px); height: 200px;" do %>
+      <div class="flex flex-col items-center">
+        <span class="text-5xl font-bold">+</span>
+        <span class="mt-2 text-lg font-semibold"><%= t :add_course %></span>
+      </div>
+    <% end %>
   <% end %>
 </div>

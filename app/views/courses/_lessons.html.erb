@@ -1,0 +1,61 @@
+<div class="flex justify-center"> <!-- Centering the flex container -->
+  <div class="flex flex-wrap justify-center gap-4 max-w-5xl w-full mx-auto"> <!-- Using w-full to ensure it occupies full width -->
+    <body class="antialiased font-sans ">
+      <div class="container mx-auto px-0 sm:px-8"> <!-- Set padding to 0 on the sides -->
+        <div class="py-8">
+          <div>
+            <h2 class="text-2xl font-semibold leading-tight"><%="#{@course.title}#{" lessons"}"%></h2>
+          </div>
+          <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+              <table class="min-w-full leading-normal">
+                <thead>
+                  <tr>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Lesson
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Created at
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Comments
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @course.lessons.each_with_index do |lesson, index| %>
+                    <tr>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <div class="flex items-center">
+                          <%= index + 1 %>
+                          <% if lesson.photo.representable? %>
+                            <%= link_to course_lesson_path(@course, lesson) do %>
+                              <%= image_tag lesson.photo.representation(resize_to_limit: [100, 100]), class: "w-50 h-26 object-cover rounded-md mr-3 ml-5" %>
+                            <% end %>
+                          <% end %>
+                          <p class="text-gray-900 whitespace-no-wrap">
+                            <%= lesson.title %>
+                          </p>
+                        </div>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          <%= lesson.created_at %>
+                        </p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                          <%= lesson.comments.count %>
+                        </p>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </div>
+</div>

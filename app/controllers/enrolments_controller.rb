@@ -7,7 +7,7 @@ class EnrolmentsController < ApplicationController
   def create
     return unless @enrolment.save
 
-    flash[:notice] = "#{t(:enrolment_notice)} #{@course.title}"
+    flash[:notice] = t(:enrolment_notice, course_title: @course.title)
     redirect_to course_path(@course)
   end
 
@@ -22,9 +22,11 @@ class EnrolmentsController < ApplicationController
 
   def destroy
     @enrolment.destroy
-    flash[:notice] = "#{t(:enrolment_destroy_notice)} #{@course.title}"
+    flash[:notice] = t(:enrolment_destroy_notice, course_title: @course.title)
     redirect_to courses_path(enroled: true)
   end
+
+  private
 
   def enrolment_params
     params.require(:enrolment).permit(:user_id, :course_id, :progress)

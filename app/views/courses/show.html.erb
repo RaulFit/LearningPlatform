@@ -1,42 +1,51 @@
 <%= render 'pages/navbar' %>
 <div class="flex">
-  <%= render 'sidebar' %>
-  <div class="flex justify-center items-center min-h-screen w-4/5">
-    <div class=" mx-auto p-4">
-      <div class="bg-white rounded-lg shadow-md flex flex-col justify-between leading-normal p-6 border-4">
-        <div class="mb-5">
-          <h1 class="text-gray-900 font-bold text-4xl"><%= @course.title %></h1>
-          <div class="py-5 text-sm font-regular text-gray-900 flex">
-            <span class="mr-3 flex flex-row items-center">
-              <svg class="text-indigo-600" fill="currentColor" height="13px" width="13px" viewBox="0 0 512 512">
-                <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256
+  <div class="flex-1 px-8 py-8">
+    <div class="flex justify-center items-center min-h-screen">
+      <div class=" mx-auto p-4">
+        <div class="bg-white rounded-lg shadow-md flex flex-col justify-between leading-normal p-6 border-4">
+          <div class="mb-5">
+            <h1 class="text-gray-900 font-bold text-4xl"><%= @course.title %></h1>
+            <div class="py-5 text-sm font-regular text-gray-900 flex">
+              <div class="flex justify-center">
+              <% if current_user.enroled?(@course) %>
+                <%= link_to  course_enrolment_path(@course, current_user.get_enrolment(@course)), data: {turbo_method: :delete}, class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.75h6.5a2 2 0 012 2v12.5a2 2 0 01-2-2h-6.5a2 2 0 00-2 2V6.75a2 2 0 012-2zm10 0h6.5a2 2 0 012 2v12.5a2 2 0 00-2-2h-6.5a2 2 0 012-2V6.75a2 2 0 00-2-2z" />
+                  </svg>
+                  <span class="mx-2 text-sm font-medium">Abandon</span>
+                <% end %>
+              <% else %>
+                <%= link_to course_enrolments_path(@course, enrolment: {user_id: current_user.id, course_id: @course.id, progress: 0}), data: {turbo_method: :post}, class:"flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.75h6.5a2 2 0 012 2v12.5a2 2 0 01-2-2h-6.5a2 2 0 00-2 2V6.75a2 2 0 012-2zm10 0h6.5a2 2 0 012 2v12.5a2 2 0 00-2-2h-6.5a2 2 0 012-2V6.75a2 2 0 00-2-2z" />
+                  </svg>
+                  <span class="mx-2 text-sm font-medium"><%= t :enrol %></span>
+                <% end %>
+              <% end %>
+              </div>
+              <span class="mr-3 flex flex-row items-center">
+                <svg class="text-indigo-600" fill="currentColor" height="13px" width="13px" viewBox="0 0 512 512">
+                  <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256
 			c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128
 		                   	c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z"></path>
-              </svg>
-              <span class="ml-1"><%= @course.lessons.count %> <%= "#{t :lessons}" %></span>
-            </span>
-            <a href="#" class="flex flex-row items-center hover:text-indigo-600 mr-3">
-              <svg class="text-indigo-600" fill="currentColor" height="16px" aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path fill="currentColor"
+                </svg>
+                <span class="ml-1"><%= @course.lessons.count %> <%= "#{t :lessons}" %></span>
+              </span>
+              <a href="#" class="flex flex-row items-center hover:text-indigo-600 mr-3">
+                <svg class="text-indigo-600" fill="currentColor" height="16px" aria-hidden="true" role="img" viewBox="0 0 24 24">
+                  <path fill="currentColor"
                     d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z">
-                </path>
-              </svg>
-              <span class="ml-1"><%= @course.author.username %></span>
-            </a>
-          </div>
-          <hr>
-          <p class="text-base leading-8 my-5">
-            <%= @course.description %>
-          </p>
-          <div class="flex justify-center gap-3">
-            <%= link_to "My courses", courses_path(authored: true), class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
-            <% if current_user.enroled?(@course) %>
-              <%= link_to "Start", course_enrolment_path(@course, @course.enrolments.find_by(user_id: current_user.id), position: 0),
-                 data: {turbo_method: :put}, class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
-            <% else %>
-              <%= link_to "Start", course_lesson_path(@course, @course.course_lessons.find_by(position: 0).lesson),
-                 class:"inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50 text-lg" %>
-            <% end %>
+                  </path>
+                </svg>
+                <span class="ml-1"><%= @course.author.username %></span>
+              </a>
+            </div>
+            <hr>
+            <p class="text-base leading-8 my-5">
+              <%= @course.description %>
+            </p>
+            <%= render 'lessons' %>
           </div>
         </div>
       </div>

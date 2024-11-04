@@ -6,6 +6,7 @@ class Ability
 
     can :manage, Course, author: user
     can :manage, Lesson
+    can :manage, Comment
     can :manage, CourseLesson
     can :read, Course
     can :manage, Enrolment

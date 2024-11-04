@@ -1,17 +1,17 @@
 class CoursesController < ApplicationController
   load_and_authorize_resource :course
   load_and_authorize_resource :course_lesson, through: :course
+  load_and_authorize_resource :lesson, through: :course_lesson
 
   def index
+    @courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"]) if params[:search].present?
+
     if params[:available]
-      @available_courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"]).where(public: true)
-      @available = true
+      @courses = @courses.available(current_user.id)
     elsif params[:enroled]
-      @enroled_courses = @courses.enroled(current_user.id).where(['title LIKE ?', "%#{params[:search]}%"])
-      @enroled = true
+      @courses = @courses.enroled(current_user.id)
     elsif params[:authored]
-      @authored_courses = current_user.authored_courses.where(['title LIKE ?', "%#{params[:search]}%"])
-      @authored = true
+      @courses = @courses.authored(current_user.id)
     end
   end
 
