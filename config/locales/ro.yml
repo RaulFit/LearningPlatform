@@ -36,6 +36,9 @@ ro:
   course_alert_notice: "Cursul nu a fost actualizat"
   course_destroy_notice: "Cursul a fost sters cu succes"
 
+  comment_notice: "Comentariul a fost adaugat cu succes"
+  comment_alert: "Comentariul nu a fost adaugat"
+
   enrolment_notice: "Te-ai inscris cu succes la %{course_title}"
   enrolment_destroy_notice: "Ai abandonat %{course_title}"
 

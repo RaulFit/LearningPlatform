@@ -4,15 +4,13 @@ class CourseLessonsController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
-      if params[:up] && params[:position].to_i.positive?
-        @first_lesson = @course.course_lessons.find_by(position: params[:position].to_i)
-        @second_lesson = @course.course_lessons.find_by(position: params[:position].to_i - 1)
-        @course.swap_lessons(@first_lesson, @second_lesson)
-      elsif params[:down] && params[:position].to_i < @course.course_lessons.count - 1
-        @first_lesson = @course.course_lessons.find_by(position: params[:position].to_i)
-        @second_lesson = @course.course_lessons.find_by(position: params[:position].to_i + 1)
-        @course.swap_lessons(@first_lesson, @second_lesson)
+      @first_lesson = @course.course_lessons.find_by(position: course_lesson_params[:position].to_i)
+      if course_lesson_params[:up] && course_lesson_params[:position].to_i.positive?
+        @second_lesson = @course.course_lessons.find_by(position: course_lesson_params[:position].to_i - 1)
+      elsif course_lesson_params[:down] && course_lesson_params[:position].to_i < @course.course_lessons.count - 1
+        @second_lesson = @course.course_lessons.find_by(position: course_lesson_params[:position].to_i + 1)
       end
+      @course.swap_lessons(@first_lesson, @second_lesson)
     end
 
     redirect_to course_lessons_path(@course)
@@ -22,5 +20,11 @@ class CourseLessonsController < ApplicationController
     @course_lesson.destroy
     flash[:notice] = t(:lesson_destroy_notice)
     redirect_to course_lessons_path(@course)
+  end
+
+  private
+
+  def course_lesson_params
+    params.permit(:up, :down, :position)
   end
 end

@@ -36,6 +36,9 @@ en:
   course_alert_notice: "Course not updated"
   course_destroy_notice: "Course deleted successfully"
 
+  comment_notice: "Comment added successfully"
+  comment_alert: "Comment was not added"
+
   enrolment_notice: "Successfully enroled to %{course_title}"
   enrolment_destroy_notice: "Abandoned %{course_title}"
 

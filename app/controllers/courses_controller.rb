@@ -4,7 +4,10 @@ class CoursesController < ApplicationController
   load_and_authorize_resource :lesson, through: :course_lesson
 
   def index
-    @courses = @courses.where(['title LIKE ?', "%#{params[:search]}%"]) if params[:search].present?
+    if params[:search].present?
+      @courses = @courses.left_outer_joins(:tags).where('courses.title LIKE :search OR tags.name LIKE :search',
+                                                        search: "%#{params[:search]}%").distinct
+    end
 
     if params[:available]
       @courses = @courses.available(current_user.id)
@@ -48,6 +51,6 @@ class CoursesController < ApplicationController
   protected
 
   def course_params
-    params.require(:course).permit(:title, :photo, :description, :difficulty, :public, :author_id)
+    params.require(:course).permit(:title, :photo, :description, :difficulty, :public, :tag_list, :author_id)
   end
 end

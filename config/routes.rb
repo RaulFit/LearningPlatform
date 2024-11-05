@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :enrolments, only: %i[new create destroy update]
-    resources :course_lessons, only: %i[update destroy]
     resources :lessons do
       resources :comments
     end
   end
+
+  resources :course_lessons, only: %i[update destroy]
+  resources :tags
 end

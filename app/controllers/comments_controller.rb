@@ -4,7 +4,11 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :comment, through: :lesson
 
   def create
-    @comment.save
+    if @comment.save
+      flash[:notice] = t(:comment_notice)
+    else
+      flash[:alert] = t(:comment_alert)
+    end
     redirect_to course_lesson_path(@course, @lesson)
   end
 

@@ -2,7 +2,6 @@ class LessonsController < ApplicationController
   load_and_authorize_resource :course
   load_and_authorize_resource :enrolment, through: :course
   load_and_authorize_resource :lesson, through: :course
-  load_and_authorize_resource :course_lesson, through: :course
 
   def index; end
 

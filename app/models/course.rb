@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   scope :authored, ->(user_id) { where(author_id: user_id) }
 
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  has_many :taggings
+  has_many :tags, through: :taggings
   has_many :course_lessons, dependent: :destroy
   has_many :lessons, -> { order(:position) }, through: :course_lessons
   has_many :enrolments, dependent: :destroy
@@ -21,5 +23,15 @@ class Course < ApplicationRecord
 
   def get_course_lesson(lesson)
     course_lessons.find_by(lesson_id: lesson.id)
+  end
+
+  def tag_list
+    tags.collect(&:name).join(', ')
+  end
+
+  def tag_list=(tags_string)
+    tag_names = tags_string.split(',').collect { |s| s.strip.downcase }.uniq
+    new_or_found_tags = tag_names.collect { |name| Tag.find_or_create_by(name:) }
+    self.tags = new_or_found_tags
   end
 end

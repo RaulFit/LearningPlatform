@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_241_030_191_217) do
+ActiveRecord::Schema[7.1].define(version: 20_241_104_185_708) do
   create_table 'action_text_rich_texts', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body'
@@ -98,6 +98,21 @@ ActiveRecord::Schema[7.1].define(version: 20_241_030_191_217) do
     t.index ['course_id'], name: 'index_lessons_on_course_id'
   end
 
+  create_table 'taggings', force: :cascade do |t|
+    t.integer 'tag_id', null: false
+    t.integer 'course_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['course_id'], name: 'index_taggings_on_course_id'
+    t.index ['tag_id'], name: 'index_taggings_on_tag_id'
+  end
+
+  create_table 'tags', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
   create_table 'users', force: :cascade do |t|
     t.string 'username'
     t.string 'email'
@@ -117,4 +132,6 @@ ActiveRecord::Schema[7.1].define(version: 20_241_030_191_217) do
   add_foreign_key 'enrolments', 'courses'
   add_foreign_key 'enrolments', 'users'
   add_foreign_key 'lessons', 'courses'
+  add_foreign_key 'taggings', 'courses'
+  add_foreign_key 'taggings', 'tags'
 end
